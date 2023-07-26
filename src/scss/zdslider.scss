@@ -1,0 +1,49 @@
+@import "variables";
+
+.zdslider {
+    max-width: $ranger-width;
+    padding-top: 80px;
+    padding-bottom: 20px;
+    align-self: center;
+    position: relative;
+    margin-right: 300px;            /* Потом убрать */
+    margin-left: 30px;
+    &-panel {
+        width: 285px;
+        height: 160px;
+        border: 1px solid red;
+        align-self: center;
+        margin-left: 30px;
+        &__check-runners {
+            margin-top: 10px;
+        }
+        &__check-runners, &__check-discrete, &__check-tip, &__check-orient, &__min, &__max, &__step {
+            margin-left: 10px;
+        }             
+    }
+    &-wrapper {
+        // display: flex;           /* Флекс мешает сжиматься слайдеру */
+        margin-bottom: 20px;
+    }
+}
+
+.zdslider-vert {
+    margin-left: 70px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    align-self: center;
+    display: flex;
+    &-config {
+        width: 200px;
+        height: 150px;
+        border: 1px solid red;
+        align-self: center;
+        margin-left: 30px;
+    }
+    &-wrapper {
+        display: flex;
+        margin-bottom: 20px;
+    }
+}
+
