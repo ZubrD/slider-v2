@@ -1,8 +1,9 @@
 import { SliderComponent } from "../../core/SliderComponent";
+import { clickMouse } from "../../js/mouseClick";
 
 export class Division extends SliderComponent {
     constructor(orientation) {
-        _Division_instances.add(this);
+        super()
         this.$el = document.createElement('div');
         this.$el.classList.add('ranger__scale-division');
         if (orientation === 'horizontal') {
@@ -10,13 +11,17 @@ export class Division extends SliderComponent {
         else if (orientation === 'vertical') {
             this.$el.classList.add('ranger-vert__scale-division');
         }
-        __classPrivateFieldGet(this, _Division_instances, "m", _Division_setup).call(this);
+        this.#setup()
     }
     appendTo(parent) {
         parent.appendChild(this.$el);
     }
     appendChild(child) {
         this.$el.appendChild(child);
+    }
+    #setup() {
+        this.clickHandler = this.clickHandler.bind( this )        /* Только для местных функций */
+        this.$el.addEventListener( 'click', this.clickHandler )
     }
     clickHandler(event) {
         clickMouse(event);

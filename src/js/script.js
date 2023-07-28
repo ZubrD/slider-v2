@@ -1,46 +1,21 @@
-import { configObj } from "../../js/config";
-import { makeScale } from "../../js/scale";
-import { Ranger } from "../ranger/Ranger";
-import { Interval } from "../interval/Interval";
-import { Button } from "../button/Button";
-import { Division } from "../division/Division";
-import { DivisionSpan } from "../divisionSpan/DivisionSpan";
-import { Scale } from "../scale/Scale";
-import { ScaleSpan } from "../scaleSpan/ScaleSpan";
-import { Settings } from "../settings/Settings";
-import { Panel } from "../panel/Panel";
-import { changeMinListener, changeMaxListener, changeStepListener, allChecksListener } from "../../js/listeners";
-import { getCoords } from "../../js/scale";
-
-export class Slider {
-  constructor(selector, options) {
-    // this.$el = document.querySelector(selector);
-    // this.$el.classList.add("zdslider-wrapper");
-    // this.components = options.components || [];
-  }
-
-  getRoot() {
-    // const $root = document.createElement("div");
-    // $root.classList.add("zdslider");
-
-    // return $root;
-  }
-
-  init() {
-    // this.$el.append(this.getRoot());
-    const runnerNumber = configObj.runner_number;
-    const min = configObj.min;
-    const max = configObj.max;
-    const step = 1;
-    const discrete = configObj.discrete;
-    const orientation = configObj.orientation;
-    const scaleArrs = makeScale(min, max, step);
+import { Ranger, Interval, Button, Scale, ScaleSpan, Division, DivisionSpan, Settings, Panel, } from '../js/model.js';
+import { changeMinListener, changeMaxListener, changeStepListener, allChecksListener } from '../js/listeners.js';
+import { getCoords, makeScale } from '../js/scale.js';
+import { configObj, } from '../js/config.js';
+window.onload = sliderInit();
+export function sliderInit() {
+    let runnerNumber = configObj.runner_number;
+    let min = configObj.min;
+    let max = configObj.max;
+    let step = 1;
+    let discrete = configObj.discrete;
+    let orientation = configObj.orientation;
+    let scaleArrs = makeScale(min, max, step);
     /* Массив значений шкалы */
-    const scaleArr = scaleArrs[0];
-    const iteration = scaleArrs[1];
-    const iterationsArr = scaleArrs[2];
-    const elements = document.querySelectorAll(".zdslider");
-    console.log(elements.length);
+    let scaleArr = scaleArrs[0];
+    let iteration = scaleArrs[1];
+    let iterationsArr = scaleArrs[2];
+    let elements = document.querySelectorAll('.zdslider');
     if (elements.length != 0) {
         /* Создание структуры слайдера */
         setStructure(runnerNumber, min, max, discrete, orientation, scaleArr, iteration, iterationsArr);
@@ -52,9 +27,7 @@ export class Slider {
         /* Слушатель переключателей */
         elem.addEventListener('click', allChecksListener);
     });
-  }
 }
-
 /* Структура слайдера */
 export function setStructure(runners, min, max, discrete, orientation, scaleArr, iteration, iterationsArr) {
     let elements = document.querySelectorAll('.zdslider');

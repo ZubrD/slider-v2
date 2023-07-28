@@ -1,8 +1,10 @@
 import { SliderComponent } from "../../core/SliderComponent";
+import { mouseDownBtnFirst, mouseDownBtnSecond } from "../../js/mouse";
+import { mouseVertDownBtnFirst, mouseVertDownBtnSecond } from "../../js/mouseVert";
 
 export class Button extends SliderComponent {
     constructor(orientation) {
-        _Button_instances.add(this);
+        super()
         this.$el = document.createElement('button');
         this.$el.classList.add('ranger__button');
         if (orientation === 'horizontal') {
@@ -10,13 +12,17 @@ export class Button extends SliderComponent {
         else if (orientation === 'vertical') {
             this.$el.classList.add('ranger-vert__button');
         }
-        __classPrivateFieldGet(this, _Button_instances, "m", _Button_setup).call(this);
+        this.#setup()
     }
     appendTo(parent) {
         parent.appendChild(this.$el);
     }
     setAttribute(attr, number) {
         this.$el.setAttribute(attr, number);
+    }
+    #setup() {
+        this.clickHandler = this.clickHandler.bind( this )        /* Только для местных функций */
+        this.$el.addEventListener( 'mousedown', this.clickHandler )
     }
     clickHandler(event) {
         let elem = event.target;
@@ -46,8 +52,3 @@ export class Button extends SliderComponent {
     }
 }
 
-_Button_instances = new WeakSet(), _Button_setup = function _Button_setup() {
-    /* Только для местных функций */
-    this.clickHandler = this.clickHandler.bind(this);
-    this.$el.addEventListener('mousedown', this.clickHandler);
-};
