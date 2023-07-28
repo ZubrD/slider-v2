@@ -13,10 +13,4 @@ export class Ranger extends SliderComponent {
             this.$el.classList.add('ranger-vert');
         }
     }
-    appendTo(parent) {
-        parent.appendChild(this.$el);
-    }
-    toHTML() {
-        return ''
-    }
 }

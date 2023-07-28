@@ -11,14 +11,8 @@ export class ScaleSpan extends SliderComponent {
             this.$el.classList.add('ranger-vert__scale-span');
         }
     }
-    appendTo(parent) {
-        parent.appendChild(this.$el);
-    }
+
     inner_HTML(child) {
         this.$el.innerHTML = child;
-    }
-
-    toHTML() {
-        return `<h1>ScaleSpan</h1>`
     }
 }

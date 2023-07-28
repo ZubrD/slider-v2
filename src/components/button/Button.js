@@ -14,9 +14,7 @@ export class Button extends SliderComponent {
         }
         this.#setup()
     }
-    appendTo(parent) {
-        parent.appendChild(this.$el);
-    }
+
     setAttribute(attr, number) {
         this.$el.setAttribute(attr, number);
     }
@@ -45,10 +43,6 @@ export class Button extends SliderComponent {
                 mouseVertDownBtnSecond(event);
             }
         }
-    }
-
-    toHTML() {
-        return `<h1>Button</h1>`
     }
 }
 

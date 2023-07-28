@@ -12,10 +12,4 @@ export class Interval extends SliderComponent {
             this.$el.classList.add('ranger-vert__interval');
         }
     }
-    appendTo(parent) {
-        parent.appendChild(this.$el);
-    }
-    toHTML() {
-        return `<h1>Interval</h1>`
-    }
 }

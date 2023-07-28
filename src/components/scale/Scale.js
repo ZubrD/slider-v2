@@ -11,14 +11,4 @@ export class Scale extends SliderComponent {
             this.$el.classList.add('ranger-vert__scale');
         }
     }
-    appendTo(parent) {
-        parent.appendChild(this.$el);
-    }
-    appendChild(child) {
-        this.$el.appendChild(child);
-    }
-
-    toHTML() {
-        return `<h1>Scale</h1>`
-    }
 }

@@ -1,8 +1,6 @@
 import { getCoords } from '../js/scale.js';
 import { forTip } from '../js/tipToggler.js';
 export function clickMouse(event) {
-    /* TODO Убирать нельзя - это для тестирования !!! */
-    console.log('Вызов из mouseClick');
     let elem = event.target;
     let division = elem.parentNode.parentNode.querySelector('.ranger__scale-division');
     /* FIXIT Если клик на риску то ничего не произойдёт */

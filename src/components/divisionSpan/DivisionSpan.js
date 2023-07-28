@@ -11,10 +11,4 @@ export class DivisionSpan extends SliderComponent {
             this.$el.classList.add('ranger-vert__scale-division-span');
         }
     }
-    appendTo(parent) {
-        parent.appendChild(this.$el);
-    }
-    toHTML() {
-        return `<h1>DivisionSpan</h1>`
-    }
 }

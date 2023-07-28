@@ -13,21 +13,12 @@ export class Division extends SliderComponent {
         }
         this.#setup()
     }
-    appendTo(parent) {
-        parent.appendChild(this.$el);
-    }
-    appendChild(child) {
-        this.$el.appendChild(child);
-    }
+
     #setup() {
         this.clickHandler = this.clickHandler.bind( this )        /* Только для местных функций */
         this.$el.addEventListener( 'click', this.clickHandler )
     }
     clickHandler(event) {
         clickMouse(event);
-    }
-
-    toHTML() {
-        return `<h1>Division</h1>`
     }
 }

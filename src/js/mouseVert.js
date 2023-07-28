@@ -15,8 +15,6 @@ export function mouseVertDownBtnFirst(event) {
     }
 }
 export function mouseVertDownBtnSecond(event) {
-    /* TODO Убирать нельзя - это для тестирования !!! */
-    console.log('Вызов из mouseVertDownBtnSecond');
     let elem = event.target;
     let config = elem.parentNode.parentNode.parentNode.querySelector('.zdslider-config');
     let slerNumber = Number(config.dataset.inst);
@@ -35,34 +33,20 @@ export function mouseVertDownBtnSecond(event) {
     document.onmousemove = function (event) {
         let top2 = event.pageY - shiftY2 - slerCoords.top;
         let down2 = sler.offsetHeight;
-        /* Тестирование */
-        if (localStorage.test) {
-            top2 = Number(localStorage.top2_3);
-        }
+
         if (top2 < 0)
             top2 = 0;
-        /* Тестирование */
-        if (localStorage.test) {
-            top2 = Number(localStorage.top2_4);
-            down2 = Number(localStorage.down2_4);
-        }
+
         if (top2 > down2)
             top2 = down2;
         btn2.style.marginTop = top2 + 'px';
         shiftY1 = event.pageY - btn1Coords.top;
         let top1 = event.pageY - shiftY1 - slerCoords.top;
         let down1 = sler.offsetHeight;
-        /* Тестирование */
-        if (localStorage.test) {
-            top1 = Number(localStorage.top1_3);
-        }
+
         if (top1 < 0)
             top1 = 0;
-        /* Тестирование */
-        if (localStorage.test) {
-            top1 = Number(localStorage.top1_4);
-            down1 = Number(localStorage.down1_4);
-        }
+
         if (top1 > down1)
             top1 = down1;
         let discretArr = discreteArray(intervalNumber, down2);
@@ -70,27 +54,14 @@ export function mouseVertDownBtnSecond(event) {
         let integ = Math.floor(top2);
         if (discreteStatus === 'yes') {
             discretArr.forEach((num) => {
-                /* Тестирование */
-                if (localStorage.test) {
-                    integ = Number(localStorage.integ);
-                    num = Number(localStorage.num);
-                    range = Number(localStorage.range);
-                }
+
                 if (integ >= (num - range / 2) && integ < (num + range / 2)) {
-                    /* Тестирование */
-                    if (localStorage.test) {
-                        num = Number(localStorage.num1_1);
-                        top1 = Number(localStorage.top1_1);
-                    }
+
                     if (num < top1) {
                         interval.style.height = (top1 - num) + 'px';
                         interval.style.marginTop = num + 'px';
                     }
-                    /* Тестирование */
-                    if (localStorage.test) {
-                        num = Number(localStorage.num1_2);
-                        top1 = Number(localStorage.top1_2);
-                    }
+
                     if (num >= top1) {
                         interval.style.height = (num - top1) + 'px';
                         interval.style.marginTop = top1 + 'px';
@@ -106,20 +77,12 @@ export function mouseVertDownBtnSecond(event) {
             });
         }
         else if (discreteStatus === 'no') {
-            /* Тестирование */
-            if (localStorage.test) {
-                top1 = Number(localStorage.top1_1);
-                top2 = Number(localStorage.top2_1);
-            }
+
             if (top1 > top2) {
                 interval.style.height = (top1 - top2) + 'px';
                 interval.style.marginTop = top2 + 'px';
             }
-            /* Тестирование */
-            if (localStorage.test) {
-                top1 = Number(localStorage.top1_2);
-                top2 = Number(localStorage.top2_2);
-            }
+
             if (top1 <= top2) {
                 interval.style.height = (top2 - top1) + 'px';
                 interval.style.marginTop = top1 + 'px';
@@ -137,8 +100,6 @@ export function mouseVertDownBtnSecond(event) {
     };
 }
 function mouseVertDownBtnFirstSingle(event) {
-    /* TODO Убирать нельзя - это для тестирования !!! */
-    console.log('Вызов из mouseVertDownBtnFirstSingle');
     let elem = event.target;
     let config = elem.parentNode.parentNode.parentNode.querySelector('.zdslider-config');
     let slerNumber = Number(config.dataset.inst);
@@ -157,29 +118,17 @@ function mouseVertDownBtnFirstSingle(event) {
         let top1 = event.pageY - shiftY1 - slerCoords.top;
         let down1 = sler.offsetHeight;
         if (discreteStatus === 'yes') {
-            /* Тестирование */
-            if (localStorage.test) {
-                top1 = Number(localStorage.top1_1);
-            }
+
             if (top1 < 0)
                 top1 = 0;
-            /* Тестирование */
-            if (localStorage.test) {
-                top1 = Number(localStorage.top1_2);
-                down1 = Number(localStorage.down1_2);
-            }
+
             if (top1 > down1)
                 top1 = down1;
             let discretArr = discreteArray(intervalNumber, down1);
             let range = discretArr[1] - discretArr[0];
             let integ = Math.floor(top1);
             discretArr.forEach((num) => {
-                /* Тестрование */
-                if (localStorage.test) {
-                    integ = Number(localStorage.integ);
-                    num = Number(localStorage.num);
-                    range = Number(localStorage.range);
-                }
+
                 if (integ < (num + range / 2) && integ > (num - range / 2)) {
                     btn1.style.marginTop = num + 'px';
                     interval.style.marginTop = num + 'px';
@@ -195,17 +144,10 @@ function mouseVertDownBtnFirstSingle(event) {
             });
         }
         else if (discreteStatus === 'no') {
-            /* Тестрование */
-            if (localStorage.test) {
-                top1 = Number(localStorage.top1_1);
-            }
+
             if (top1 < 0)
                 top1 = 0;
-            /* Тестрование */
-            if (localStorage.test) {
-                top1 = Number(localStorage.top1_2);
-                down1 = Number(localStorage.down1_2);
-            }
+
             if (top1 > down1)
                 top1 = down1;
             btn1.style.marginTop = top1 + 'px';
@@ -225,8 +167,6 @@ function mouseVertDownBtnFirstSingle(event) {
     };
 }
 function mouseVertDownBtnFirstDouble(event) {
-    /* TODO Убирать нельзя - это для тестирования !!! */
-    console.log('Вызов из mouseVertDownBtnFirstDouble');
     let elem = event.target;
     let config = elem.parentNode.parentNode.parentNode.querySelector('.zdslider-config');
     let slerNumber = Number(config.dataset.inst);
@@ -249,17 +189,10 @@ function mouseVertDownBtnFirstDouble(event) {
         shiftY2 = event.pageY - btn2Coords.top;
         let top2 = event.pageY - shiftY2 - slerCoords.top;
         let down2 = sler.offsetHeight;
-        /* Тестирование */
-        if (localStorage.test) {
-            top1 = Number(localStorage.top1_1);
-        }
+
         if (top1 < 0)
             top1 = 0;
-        /* Тестирование */
-        if (localStorage.test) {
-            top1 = Number(localStorage.top1_2);
-            down1 = Number(localStorage.down1_2);
-        }
+
         if (top1 > down1)
             top1 = down1;
         let discretArr = discreteArray(intervalNumber, down1);
@@ -268,27 +201,14 @@ function mouseVertDownBtnFirstDouble(event) {
         if (discreteStatus === 'yes') {
             let counter = 0;
             discretArr.forEach((num) => {
-                /* Тестирование */
-                if (localStorage.test) {
-                    integ = Number(localStorage.integ);
-                    num = Number(localStorage.num);
-                    range = Number(localStorage.range);
-                }
+
                 if (integ < (num + range / 2) && integ > (num - range / 2)) {
-                    /* Тестирование */
-                    if (localStorage.test) {
-                        num = Number(localStorage.num1_1);
-                        top2 = Number(localStorage.top2_1);
-                    }
+
                     if (num > top2) {
                         interval.style.height = (num - top2) + 'px';
                         interval.style.marginTop = top2 + 'px';
                     }
-                    /* Тестирование */
-                    if (localStorage.test) {
-                        num = Number(localStorage.num1_2);
-                        top2 = Number(localStorage.top2_2);
-                    }
+ 
                     if (num <= top2) {
                         interval.style.height = (top2 - num) + 'px';
                         interval.style.marginTop = num + 'px';
@@ -309,33 +229,18 @@ function mouseVertDownBtnFirstDouble(event) {
             shiftY2 = event.pageY - btn2Coords.top;
             let top2 = event.pageY - shiftY2 - slerCoords.top;
             let down2 = sler.offsetHeight;
-            /* Тестирование */
-            if (localStorage.test) {
-                top2 = Number(localStorage.top2_1);
-            }
+
             if (top2 < 0)
                 top2 = 0;
-            /* Тестирование */
-            if (localStorage.test) {
-                top2 = Number(localStorage.top2_2);
-                down2 = Number(localStorage.down2_2);
-            }
+
             if (top2 > down2)
                 top2 = down2;
-            /* Тестирование */
-            if (localStorage.test) {
-                top1 = Number(localStorage.top1_3);
-                top2 = Number(localStorage.top2_3);
-            }
+
             if (top1 > top2) {
                 interval.style.height = (top1 - top2) + 'px';
                 interval.style.marginTop = top2 + 'px';
             }
-            /* Тестирование */
-            if (localStorage.test) {
-                top1 = Number(localStorage.top1_4);
-                top2 = Number(localStorage.top2_4);
-            }
+
             if (top1 <= top2) {
                 interval.style.height = (top2 - top1) + 'px';
                 interval.style.marginTop = top1 + 'px';

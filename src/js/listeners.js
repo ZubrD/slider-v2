@@ -153,6 +153,10 @@ window.addEventListener('resize', function () {
     let btn2 = document.body.querySelector('[data-type="btn-second"]');
     let btn1InitPos = config.dataset.btn1_init_pos;
     let btn2InitPos = config.dataset.btn2_init_pos;
+    // Если на слайдере только один бегунок
+    if(!btn2) {
+        btn2 = btn1
+    }
     if (ranger.offsetWidth == Number(btn2InitPos) || ranger.offsetWidth < Number(btn2InitPos) ||
         ranger.offsetWidth == Number(btn1InitPos) || ranger.offsetWidth < Number(btn1InitPos)) {
         config.dataset.btn2_init_pos = String(ranger.offsetWidth - btn2.offsetWidth);
@@ -160,6 +164,5 @@ window.addEventListener('resize', function () {
         btn2.style.marginLeft = config.dataset.btn2_init_pos + 'px';
         interval.style.marginLeft = 0 + 'px';
         interval.style.width = config.dataset.btn2_init_pos + 'px';
-        console.log(btn1InitPos);
     }
 });

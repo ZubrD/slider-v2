@@ -13,21 +13,8 @@ import { changeMinListener, changeMaxListener, changeStepListener, allChecksList
 import { getCoords } from "../../js/scale";
 
 export class Slider {
-  constructor(selector, options) {
-    // this.$el = document.querySelector(selector);
-    // this.$el.classList.add("zdslider-wrapper");
-    // this.components = options.components || [];
-  }
-
-  getRoot() {
-    // const $root = document.createElement("div");
-    // $root.classList.add("zdslider");
-
-    // return $root;
-  }
 
   init() {
-    // this.$el.append(this.getRoot());
     const runnerNumber = configObj.runner_number;
     const min = configObj.min;
     const max = configObj.max;
@@ -40,7 +27,6 @@ export class Slider {
     const iteration = scaleArrs[1];
     const iterationsArr = scaleArrs[2];
     const elements = document.querySelectorAll(".zdslider");
-    console.log(elements.length);
     if (elements.length != 0) {
         /* Создание структуры слайдера */
         setStructure(runnerNumber, min, max, discrete, orientation, scaleArr, iteration, iterationsArr);

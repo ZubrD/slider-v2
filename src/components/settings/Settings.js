@@ -6,9 +6,7 @@ export class Settings extends SliderComponent {
         this.$el = document.createElement('div');
         this.$el.classList.add('zdslider-config');
     }
-    appendTo(parent) {
-        parent.appendChild(this.$el);
-    }
+
     setAttribute(attr, number) {
         this.$el.setAttribute(attr, number);
     }
