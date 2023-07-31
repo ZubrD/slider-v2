@@ -2,17 +2,17 @@ import { getCoords } from '../js/scale.js';
 import { forTip } from '../js/tipToggler.js';
 export function clickMouse(event) {
     let elem = event.target;
-    let division = elem.parentNode.parentNode.querySelector('.ranger__scale-division');
+    let division = elem.parentNode.parentNode.querySelector("[data-type='scale-division']");
     /* FIXIT Если клик на риску то ничего не произойдёт */
     /* Этот блок только если клик был на .ranger__scale-division */
     if (event.target === division) {
-        const config = elem.parentNode.parentNode.querySelector('.zdslider-config');
+        const config = elem.parentNode.parentNode.querySelector("[data-type='config']");
         const buttonsNumber = Number(config.dataset.runners);
         const orientation = config.dataset.orientation;
         const btn1 = elem.parentNode.querySelector('[data-type="btn-first"]');
         const btn2 = elem.parentNode.querySelector('[data-type="btn-second"]');
-        const interval = elem.parentNode.querySelector('.ranger__interval');
-        const target = elem.parentNode.querySelector('.ranger__button');
+        const interval = elem.parentNode.querySelector("[data-type='interval']");
+        const target = elem.parentNode.querySelector("[data-button='button']");
         let divisionLeft, divisionTop, numberForTip;
         if (orientation === 'horizontal') {
             let divisionCoord = getCoords(division);

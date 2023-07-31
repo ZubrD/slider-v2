@@ -6,6 +6,7 @@ export class Division extends SliderComponent {
         super()
         this.$el = document.createElement('div');
         this.$el.classList.add('ranger__scale-division');
+        this.$el.setAttribute('data-type', 'scale-division')
         if (orientation === 'horizontal') {
         }
         else if (orientation === 'vertical') {

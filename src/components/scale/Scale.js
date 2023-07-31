@@ -5,6 +5,7 @@ export class Scale extends SliderComponent {
         super()
         this.$el = document.createElement('div');
         this.$el.classList.add('ranger__scale');
+        this.$el.setAttribute('data-type', 'scale')
         if (orientation === 'horizontal') {
         }
         else if (orientation === 'vertical') {

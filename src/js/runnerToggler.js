@@ -1,10 +1,10 @@
 import { Button } from "../components/button/Button";
 export function oneRunner(elem) {
   let config =
-    event.target.parentNode.parentNode.querySelector(".zdslider-config");
+    event.target.parentNode.parentNode.querySelector("[data-type='config']");
   let orientation = config.dataset.orientation;
-  let ranger = elem.parentNode.parentNode.querySelector(".ranger");
-  let interval = ranger.querySelector(".ranger__interval");
+  let ranger = elem.parentNode.parentNode.querySelector("[data-type='ranger']");
+  let interval = ranger.querySelector("[data-type='interval']");
   let button1 = ranger.querySelector('[data-type="btn-first"]');
   let button2 = ranger.querySelector('[data-type="btn-second"]');
   config.dataset.runners = "1";
@@ -24,9 +24,9 @@ export function oneRunner(elem) {
 }
 export function twoRunners(elem, inst) {
   let config =
-    event.target.parentNode.parentNode.querySelector(".zdslider-config");
+    event.target.parentNode.parentNode.querySelector("[data-type='config']");
   let orientation = config.dataset.orientation;
-  let ranger = elem.parentNode.parentNode.querySelector(".ranger");
+  let ranger = elem.parentNode.parentNode.querySelector("[data-type='ranger']");
   config.dataset.runners = "2";
   let button1 = ranger.querySelector('[data-type="btn-first"]');
   /* Обнуляю надпись над бегуном */
@@ -38,7 +38,7 @@ export function twoRunners(elem, inst) {
   secondButton.setAttribute("data-tip", "");
   secondButton.appendTo(ranger);
   let button2 = ranger.querySelector('[data-type="btn-second"]');
-  let interval = ranger.querySelector(".ranger__interval");
+  let interval = ranger.querySelector("[data-type='interval']");
   if (orientation == "horizontal") {
     interval.style.width = ranger.offsetWidth + "px";
     button1.style.marginLeft = "0px";

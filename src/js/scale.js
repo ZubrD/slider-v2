@@ -74,11 +74,11 @@ export function makeScale(min, max, step) {
 export function reScale(scaleArr, currentInst) {
   let parents = document.querySelectorAll(".zdslider");
   parents.forEach((parent) => {
-    let config = parent.parentNode.querySelector(".zdslider-config");
+    let config = parent.parentNode.querySelector("[data-type='config']");
     if (Number(config.dataset.inst) == currentInst) {
-      let currentRanger = parent.querySelector(".ranger");
-      let currentScale = parent.querySelector(".ranger__scale");
-      let currentDivision = parent.querySelector(".ranger__scale-division");
+      let currentRanger = parent.querySelector("[data-type='ranger']");
+      let currentScale = parent.querySelector("[data-type='scale']");
+      let currentDivision = parent.querySelector("[data-type='scale-division']");
       let orientation = config.dataset.orientation;
       currentScale.remove();
       currentDivision.remove();
@@ -102,7 +102,7 @@ export function reScale(scaleArr, currentInst) {
 }
 /* Изменение инпута переключения шага  */
 export function modifyScaleInput(parent, iteration, iterationsArr) {
-  let confInputStep = parent.querySelector(".zdslider-panel__step");
+  let confInputStep = parent.querySelector("[data-type='zdslider-panel__step']");
   confInputStep.setAttribute("data-steps", String(iterationsArr));
   confInputStep.setAttribute("data-iteration", String(iteration));
   confInputStep.setAttribute("data-current", String(iteration));

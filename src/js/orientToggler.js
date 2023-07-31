@@ -1,13 +1,13 @@
 import { hideTip } from '../js/tipToggler.js';
 export function orientationToggler(elem, orientation) {
     let zdslider = elem.parentNode.parentNode.querySelector('.zdslider');
-    let ranger = zdslider.querySelector('.ranger');
-    let rangerInterval = zdslider.querySelector('.ranger__interval');
-    let rangerScale = zdslider.querySelector('.ranger__scale');
-    let rangerScaleDivision = zdslider.querySelector('.ranger__scale-division');
-    let rangerScaleDivisionSpans = zdslider.querySelectorAll('.ranger__scale-division-span');
-    let rangerButtons = zdslider.querySelectorAll('.ranger__button');
-    let config = elem.parentNode.parentNode.querySelector('.zdslider-config');
+    let ranger = zdslider.querySelector("[data-type='ranger']");
+    let rangerInterval = zdslider.querySelector("[data-type='interval']");
+    let rangerScale = zdslider.querySelector("[data-type='scale']");
+    let rangerScaleDivision = zdslider.querySelector("[data-type='scale-division']");
+    let rangerScaleDivisionSpans = zdslider.querySelectorAll("[data-type='division-span']");
+    let rangerButtons = zdslider.querySelectorAll("[data-button='button']");
+    let config = elem.parentNode.parentNode.querySelector("[data-type='config']");
     /* Сброс флага ярлыка */
     hideTip(elem);
     if (orientation === 'vertical') {

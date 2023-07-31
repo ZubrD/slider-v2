@@ -3,7 +3,7 @@ import { forTip } from '../js/tipToggler.js';
 import { discreteArray } from '../js/mouse.js';
 export function mouseVertDownBtnFirst(event) {
     let elem = event.target;
-    let config = elem.parentNode.parentNode.parentNode.querySelector('.zdslider-config');
+    let config = elem.parentNode.parentNode.parentNode.querySelector("[data-type='config']");
     let runner_number = Number(config.dataset.runners);
     if (runner_number === 1) {
         /* если один бегун */
@@ -16,10 +16,10 @@ export function mouseVertDownBtnFirst(event) {
 }
 export function mouseVertDownBtnSecond(event) {
     let elem = event.target;
-    let config = elem.parentNode.parentNode.parentNode.querySelector('.zdslider-config');
+    let config = elem.parentNode.parentNode.parentNode.querySelector("[data-type='config']");
     let slerNumber = Number(config.dataset.inst);
-    let sler = document.querySelectorAll('.ranger')[slerNumber - 1];
-    let interval = sler.querySelector('.ranger__interval');
+    let sler = document.querySelectorAll("[data-type='ranger']")[slerNumber - 1];
+    let interval = sler.querySelector("[data-type='interval']");
     let btn1 = sler.querySelector('[data-type="btn-first"]');
     let btn2 = sler.querySelector('[data-type="btn-second"]');
     let discreteStatus = config.dataset.discrete;
@@ -101,10 +101,10 @@ export function mouseVertDownBtnSecond(event) {
 }
 function mouseVertDownBtnFirstSingle(event) {
     let elem = event.target;
-    let config = elem.parentNode.parentNode.parentNode.querySelector('.zdslider-config');
+    let config = elem.parentNode.parentNode.parentNode.querySelector("[data-type='config']");
     let slerNumber = Number(config.dataset.inst);
-    let sler = document.querySelectorAll('.ranger')[slerNumber - 1];
-    let interval = sler.querySelector('.ranger__interval');
+    let sler = document.querySelectorAll("[data-type='ranger']")[slerNumber - 1];
+    let interval = sler.querySelector("[data-type='interval']");
     let btn1 = sler.querySelector('[data-type="btn-first"]');
     let discreteStatus = config.dataset.discrete;
     /* Для дискретного перемещения */
@@ -168,10 +168,10 @@ function mouseVertDownBtnFirstSingle(event) {
 }
 function mouseVertDownBtnFirstDouble(event) {
     let elem = event.target;
-    let config = elem.parentNode.parentNode.parentNode.querySelector('.zdslider-config');
+    let config = elem.parentNode.parentNode.parentNode.querySelector("[data-type='config']");
     let slerNumber = Number(config.dataset.inst);
-    let sler = document.querySelectorAll('.ranger')[slerNumber - 1];
-    let interval = sler.querySelector('.ranger__interval');
+    let sler = document.querySelectorAll("[data-type='ranger']")[slerNumber - 1];
+    let interval = sler.querySelector("[data-type='interval']");
     let btn1 = sler.querySelector('[data-type="btn-first"]');
     let btn2 = sler.querySelector('[data-type="btn-second"]');
     let discreteStatus = config.dataset.discrete;

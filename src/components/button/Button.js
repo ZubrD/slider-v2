@@ -7,6 +7,7 @@ export class Button extends SliderComponent {
         super()
         this.$el = document.createElement('button');
         this.$el.classList.add('ranger__button');
+        this.$el.setAttribute('data-button', 'button')
         if (orientation === 'horizontal') {
         }
         else if (orientation === 'vertical') {
@@ -25,7 +26,7 @@ export class Button extends SliderComponent {
     clickHandler(event) {
         let elem = event.target;
         const { type } = elem.dataset;
-        let config_dataset = elem.parentNode.parentNode.parentNode.querySelector('.zdslider-config');
+        let config_dataset = elem.parentNode.parentNode.parentNode.querySelector("[data-type='config']");
         const { orientation } = config_dataset.dataset;
         if (orientation === 'horizontal') {
             if (type === 'btn-first') {

@@ -2,7 +2,7 @@ import { getCoords } from '../js/scale.js';
 import { forTip } from '../js/tipToggler.js';
 export function mouseDownBtnFirst(event) {
     let elem = event.target;
-    let config = elem.parentNode.parentNode.parentNode.querySelector('.zdslider-config');
+    let config = elem.parentNode.parentNode.parentNode.querySelector("[data-type='config']");
     let runnerNumber = Number(config.dataset.runners);
     if (runnerNumber === 1) {
         /* если один бегун */
@@ -16,10 +16,10 @@ export function mouseDownBtnFirst(event) {
 export function mouseDownBtnSecond(event) {
     /* Для надписи над бегуном */
     let elem = event.target;
-    let config = elem.parentNode.parentNode.parentNode.querySelector('.zdslider-config');
+    let config = elem.parentNode.parentNode.parentNode.querySelector("[data-type='config']");
     let slerNumber = Number(config.dataset.inst);
-    let sler = document.querySelectorAll('.ranger')[slerNumber - 1];
-    let interval = sler.querySelector('.ranger__interval');
+    let sler = document.querySelectorAll("[data-type='ranger']")[slerNumber - 1];
+    let interval = sler.querySelector("[data-type='interval']");
     let btn1 = sler.querySelector('[data-type="btn-first"]');
     let btn2 = sler.querySelector('[data-type="btn-second"]');
     let discreteStatus = config.dataset.discrete;
@@ -100,10 +100,10 @@ export function mouseDownBtnSecond(event) {
 }
 export function mouseDownBtnFirstSingle(event) {
     let elem = event.target;
-    let config = elem.parentNode.parentNode.parentNode.querySelector('.zdslider-config');
+    let config = elem.parentNode.parentNode.parentNode.querySelector("[data-type='config']");
     let slerNumber = Number(config.dataset.inst);
-    let sler = document.querySelectorAll('.ranger')[slerNumber - 1];
-    let interval = sler.querySelector('.ranger__interval');
+    let sler = document.querySelectorAll("[data-type='ranger']")[slerNumber - 1];
+    let interval = sler.querySelector("[data-type='interval']");
     let btn1 = sler.querySelector('[data-type="btn-first"]');
     let discreteStatus = config.dataset.discrete;
     /* Для дискретного перемещения */
@@ -163,10 +163,10 @@ export function mouseDownBtnFirstSingle(event) {
 }
 export function mouseDownBtnFirstDouble(event) {
     let elem = event.target;
-    let config = elem.parentNode.parentNode.parentNode.querySelector('.zdslider-config');
+    let config = elem.parentNode.parentNode.parentNode.querySelector("[data-type='config']");
     let slerNumber = Number(config.dataset.inst);
-    let sler = document.querySelectorAll('.ranger')[slerNumber - 1];
-    let interval = sler.querySelector('.ranger__interval');
+    let sler = document.querySelectorAll("[data-type='ranger']")[slerNumber - 1];
+    let interval = sler.querySelector("[data-type='interval']");
     let btn1 = sler.querySelector('[data-type="btn-first"]');
     let btn2 = sler.querySelector('[data-type="btn-second"]');
     let discreteStatus = config.dataset.discrete;
@@ -268,8 +268,8 @@ export function discreteArray(intervalNumber, length) {
 }
 export function resetBtnCoord(event) {
     let elem = event.target;
-    const config = elem.parentNode.parentNode.querySelector('.zdslider-config');
-    const ranger = elem.parentNode.parentNode.querySelector('.ranger');
+    const config = elem.parentNode.parentNode.querySelector("[data-type='config']");
+    const ranger = elem.parentNode.parentNode.querySelector("[data-type='ranger']");
     const orientation = config.dataset.orientation;
     config.dataset.btn1_coord = String(0);
     if (orientation === 'horizontal') {

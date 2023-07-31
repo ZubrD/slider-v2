@@ -11,8 +11,8 @@ export function allChecksListener(event) {
     let { discrete } = elem.dataset;
     let { tip } = elem.dataset;
     let { orient } = elem.dataset;
-    let ranger = elem.parentNode.parentNode.querySelector('.ranger');
-    let config = elem.parentNode.parentNode.querySelector('.zdslider-config');
+    let ranger = elem.parentNode.parentNode.querySelector("[data-type='ranger']");
+    let config = elem.parentNode.parentNode.querySelector("[data-type='config']");
     /* Извлечение из конфига флага ориентации */
     let orientation = config.dataset.orientation;
     /* Извлечение из конфига номера экземпляра слайдера */
@@ -61,10 +61,10 @@ export function allChecksListener(event) {
 }
 export function changeMinListener(event) {
     let elem = event.target;
-    let config = elem.parentNode.parentNode.querySelector('.zdslider-config');
+    let config = elem.parentNode.parentNode.querySelector("[data-type='config']");
     let parent = elem.parentNode;
     let min = Number(elem.value);
-    let maxInput = parent.querySelector('.zdslider-panel__max');
+    let maxInput = parent.querySelector("[data-type='zdslider-panel__max']");
     let max = Number(maxInput.value);
     /* Указал произвольный шаг */
     let step = 1;
@@ -85,9 +85,9 @@ export function changeMinListener(event) {
 }
 export function changeMaxListener(event) {
     let elem = event.target;
-    let config = elem.parentNode.parentNode.querySelector('.zdslider-config');
+    let config = elem.parentNode.parentNode.querySelector("[data-type='config']");
     let parent = elem.parentNode;
-    let minInput = parent.querySelector('.zdslider-panel__min');
+    let minInput = parent.querySelector("[data-type='zdslider-panel__min']");
     let min = Number(minInput.value);
     let max = Number(elem.value);
     /* Указал произвольный шаг */
@@ -109,10 +109,10 @@ export function changeMaxListener(event) {
 }
 export function changeStepListener(event) {
     let elem = event.target;
-    let config = elem.parentNode.parentNode.querySelector('.zdslider-config');
+    let config = elem.parentNode.parentNode.querySelector("[data-type='config']");
     let parent = elem.parentNode;
-    let minInput = parent.querySelector('.zdslider-panel__min');
-    let maxInput = parent.querySelector('.zdslider-panel__max');
+    let minInput = parent.querySelector("[data-type='zdslider-panel__min']");
+    let maxInput = parent.querySelector("[data-type='zdslider-panel__max']");
     let min = Number(minInput.value);
     let max = Number(maxInput.value);
     let val = Number(elem.value);
@@ -146,9 +146,9 @@ export function changeStepListener(event) {
 }
 /* Сдвиг бегунов при изменении размера окна */
 window.addEventListener('resize', function () {
-    let config = document.body.querySelector('.zdslider-config');
-    let ranger = document.body.querySelector('.ranger');
-    let interval = document.body.querySelector('.ranger__interval');
+    let config = document.body.querySelector("[data-type='config']");
+    let ranger = document.body.querySelector("[data-type='ranger']");
+    let interval = document.body.querySelector("[data-type='interval']");
     let btn1 = document.body.querySelector('[data-type="btn-first"]');
     let btn2 = document.body.querySelector('[data-type="btn-second"]');
     let btn1InitPos = config.dataset.btn1_init_pos;

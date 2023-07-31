@@ -22,7 +22,7 @@ export function sliderInit() {
         /* Первоначальное размещение слайдера */
         sliderPositioning(runnerNumber, orientation);
     }
-    let numberOfSliders = document.querySelectorAll('.zdslider-panel');
+    let numberOfSliders = document.querySelectorAll("[data-type='zdslider-panel']");
     numberOfSliders.forEach((elem) => {
         /* Слушатель переключателей */
         elem.addEventListener('click', allChecksListener);
@@ -44,7 +44,7 @@ export function setStructure(runners, min, max, discrete, orientation, scaleArr,
         let ranger = new Ranger(orientation);
         ranger.appendTo(elem);
         let interval = new Interval(orientation);
-        let rangerDiv = document.querySelectorAll('.ranger')[i];
+        let rangerDiv = document.querySelectorAll("[data-type='ranger']")[i];
         interval.appendTo(rangerDiv);
         if (runners === 2) {
             let button_1 = new Button(orientation);
@@ -94,17 +94,17 @@ export function setStructure(runners, min, max, discrete, orientation, scaleArr,
         settings.appendTo(elem.parentNode);
         let panel = new Panel();
         panel.appendTo(elem.parentNode);
-        let confInputMin = document.querySelectorAll('.zdslider-panel__min')[i];
+        let confInputMin = document.querySelectorAll("[data-type='zdslider-panel__min']")[i];
         confInputMin.setAttribute('data-min', String(min));
         confInputMin.setAttribute('data-max', String(max));
         confInputMin.value = String(min);
         confInputMin.addEventListener('change', changeMinListener);
-        let confInputMax = document.querySelectorAll('.zdslider-panel__max')[i];
+        let confInputMax = document.querySelectorAll("[data-type='zdslider-panel__max']")[i];
         confInputMax.setAttribute('data-min', String(min));
         confInputMax.setAttribute('data-max', String(max));
         confInputMax.value = String(max);
         confInputMax.addEventListener('change', changeMaxListener);
-        let confInputStep = document.querySelectorAll('.zdslider-panel__step')[i];
+        let confInputStep = document.querySelectorAll("[data-type='zdslider-panel__step']")[i];
         confInputStep.setAttribute('data-steps', String(iterationsArr));
         confInputStep.setAttribute('data-iteration', String(iteration));
         confInputStep.setAttribute('data-current', String(iteration));
@@ -127,10 +127,10 @@ export function sliderPositioning(runners, orientation) {
     let elements = document.querySelectorAll('.zdslider');
     let i = 0;
     elements.forEach((elem) => {
-        let ranger = document.querySelectorAll('.ranger')[i];
-        let interval = document.querySelectorAll('.ranger__interval')[i];
+        let ranger = document.querySelectorAll("[data-type='ranger']")[i];
+        let interval = document.querySelectorAll("[data-type='interval']")[i];
         let button1 = document.querySelectorAll('[data-type="btn-first"]')[i];
-        let config = document.querySelectorAll('.zdslider-config')[i];
+        let config = document.querySelectorAll("[data-type='config']")[i];
         if (orientation === 'horizontal') {
             interval.style.width = (config.dataset.width) + 'px';
         }
@@ -165,7 +165,7 @@ export function sliderPositioning(runners, orientation) {
     });
 }
 export function initialButtonPosition(i, runners) {
-    let config = document.querySelectorAll('.zdslider-config')[i];
+    let config = document.querySelectorAll("[data-type='config']")[i];
     let btn1 = document.querySelectorAll('[data-type="btn-first"]')[i];
     let initBtn1Pos = getCoords(btn1);
     config.dataset.btn1_init_pos = String(initBtn1Pos.left);

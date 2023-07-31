@@ -5,6 +5,7 @@ export class Panel extends SliderComponent {
         super()
         this.$el = document.createElement('div');
         this.$el.classList.add('zdslider-panel');
+        this.$el.setAttribute('data-type', 'zdslider-panel')
         this.$runCheckbox = document.createElement('input');
         this.$runCheckbox.classList.add('zdslider-panel__check-runners');
         this.$runCheckbox.setAttribute('type', 'checkbox');
@@ -15,6 +16,7 @@ export class Panel extends SliderComponent {
         this.$discreteCheckbox.setAttribute('data-discrete', 'discrete');
         this.$tipCheckbox = document.createElement('input');
         this.$tipCheckbox.classList.add('zdslider-panel__check-tip');
+        this.$tipCheckbox.setAttribute('data-type', 'tip');
         this.$tipCheckbox.setAttribute('type', 'checkbox');
         this.$tipCheckbox.setAttribute('data-tip', 'tip');
         this.$orientCheckbox = document.createElement('input');
@@ -24,12 +26,15 @@ export class Panel extends SliderComponent {
         this.$minNumber = document.createElement('input');
         this.$minNumber.classList.add('zdslider-panel__min');
         this.$minNumber.setAttribute('type', 'number');
+        this.$minNumber.setAttribute('data-type', 'zdslider-panel__min');
         this.$maxNumber = document.createElement('input');
         this.$maxNumber.classList.add('zdslider-panel__max');
         this.$maxNumber.setAttribute('type', 'number');
+        this.$maxNumber.setAttribute('data-type', 'zdslider-panel__max');
         this.$stepNumber = document.createElement('input');
         this.$stepNumber.classList.add('zdslider-panel__step');
         this.$stepNumber.setAttribute('type', 'number');
+        this.$stepNumber.setAttribute('data-type', 'zdslider-panel__step');
         this.$stepNumber.setAttribute('onkeydown', 'return false');
         this.$runLabel = document.createElement('label');
         this.$runLabel.innerHTML = '1 Бегун';

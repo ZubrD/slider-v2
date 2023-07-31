@@ -1,7 +1,7 @@
 export function showTip(elem, orientation) {
     let parent = elem.parentNode.parentNode.querySelector('.zdslider');
-    let parentRanger = parent.querySelector('.ranger');
-    let buttons = parentRanger.querySelectorAll('.ranger__button');
+    let parentRanger = parent.querySelector("[data-type='ranger']");
+    let buttons = parentRanger.querySelectorAll("[data-button='button']");
     buttons.forEach((elem) => {
         if (orientation === 'horizontal') {
             elem.classList.add('ranger__button-tip');
@@ -13,11 +13,11 @@ export function showTip(elem, orientation) {
 }
 export function hideTip(elem) {
     let parent = elem.parentNode.parentNode.querySelector('.zdslider');
-    let tip = elem.parentNode.querySelector('.zdslider-panel__check-tip');
+    let tip = elem.parentNode.querySelector("[data-type='tip']");
     /* Сбрасываю флаг надписи */
     tip.checked = false;
-    let parentRanger = parent.querySelector('.ranger');
-    let buttons = parentRanger.querySelectorAll('.ranger__button');
+    let parentRanger = parent.querySelector("[data-type='ranger']");
+    let buttons = parentRanger.querySelectorAll("[data-button='button']");
     /* Удаляю стили ярлыков */
     buttons.forEach((elem) => {
         elem.classList.remove('ranger__button-tip');
@@ -25,7 +25,7 @@ export function hideTip(elem) {
     });
 }
 export function forTip(target, coord) {
-    const config = target.parentNode.parentNode.parentNode.querySelector('.zdslider-config');
+    const config = target.parentNode.parentNode.parentNode.querySelector("[data-type='config']");
     const configMin = Number(config.dataset.min);
     const configMax = Number(config.dataset.max);
     const rangerHeight = Number(config.dataset.height);
@@ -42,9 +42,9 @@ export function reValueTip(element) {
     /* Изменение значения атрибута tip  при изменении min, max в панели */
     let parent = element.parentNode.parentNode;
     let zdslider = parent.querySelector('.zdslider');
-    let input = parent.querySelector('.zdslider-panel__check-tip');
+    let input = parent.querySelector("[data-type='tip']");
     input.checked = false;
-    let buttons = zdslider.querySelectorAll('.ranger__button');
+    let buttons = zdslider.querySelectorAll("[data-button='button']");
     buttons.forEach((elem) => {
         elem.dataset.tip = '';
     });
