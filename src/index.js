@@ -1,4 +1,6 @@
-import './scss/index.scss'
-import './module'
+import { Slider } from "./components/slider/Slider";
+import "./scss/index.scss";
 
-console.log('Всем привет!')
+const slider = new Slider();
+
+slider.init()
