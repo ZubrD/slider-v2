@@ -62,6 +62,7 @@ export function allChecksListener(event) {
 export function changeMinListener(event) {
     let elem = event.target;
     let config = elem.parentNode.parentNode.querySelector("[data-type='config']");
+    console.log(elem)
     let parent = elem.parentNode;
     let min = Number(elem.value);
     let maxInput = parent.querySelector("[data-type='zdslider-panel__max']");
@@ -121,18 +122,12 @@ export function changeStepListener(event) {
     let arrNumber = arr.map(parseFloat);
     /* Индекс текущего шага шкалы в массиве */
     let currentIndex = arrNumber.indexOf(current);
-    if (localStorage.test) {
-        current = Number(localStorage.current_1);
-        val = Number(localStorage.val_1);
-    }
+
     if (current < val) {
         elem.dataset.current = String(arrNumber[currentIndex - 1]);
         elem.value = String(arrNumber[currentIndex - 1]);
     }
-    if (localStorage.test) {
-        current = Number(localStorage.current_2);
-        val = Number(localStorage.val_2);
-    }
+
     if (current > val) {
         elem.dataset.current = String(arrNumber[currentIndex + 1]);
         elem.value = String(arrNumber[currentIndex + 1]);
