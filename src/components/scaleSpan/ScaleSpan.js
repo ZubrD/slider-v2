@@ -1,8 +1,8 @@
 import { SliderComponent } from "../../core/SliderComponent";
 
 export class ScaleSpan extends SliderComponent {
-    constructor(orientation) {
-        super()
+    constructor(orientation, options) {
+        super({...options})
         this.$el = document.createElement('span');
         this.$el.classList.add('ranger__scale-span');
         if (orientation === 'horizontal') {

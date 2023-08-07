@@ -62,7 +62,6 @@ export function allChecksListener(event) {
 export function changeMinListener(event) {
     let elem = event.target;
     let config = elem.parentNode.parentNode.querySelector("[data-type='config']");
-    console.log(elem)
     let parent = elem.parentNode;
     let min = Number(elem.value);
     let maxInput = parent.querySelector("[data-type='zdslider-panel__max']");

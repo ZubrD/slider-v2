@@ -1,8 +1,8 @@
 import { SliderComponent } from "../../core/SliderComponent";
 
 export class Panel extends SliderComponent {
-    constructor() {
-        super()
+    constructor(options) {
+        super({...options})
         this.$el = document.createElement('div');
         this.$el.classList.add('zdslider-panel');
         this.$el.setAttribute('data-type', 'zdslider-panel')

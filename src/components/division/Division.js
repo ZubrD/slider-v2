@@ -1,25 +1,32 @@
 import { SliderComponent } from "../../core/SliderComponent";
 import { clickMouse } from "../../js/mouseClick";
+import * as actions from "../../redux/actions";
 
 export class Division extends SliderComponent {
-    constructor(orientation) {
-        super()
-        this.$el = document.createElement('div');
-        this.$el.classList.add('ranger__scale-division');
-        this.$el.setAttribute('data-type', 'scale-division')
-        if (orientation === 'horizontal') {
-        }
-        else if (orientation === 'vertical') {
-            this.$el.classList.add('ranger-vert__scale-division');
-        }
-        this.#setup()
+  constructor(orientation, options) {
+    super({ ...options });
+    this.$el = document.createElement("div");
+    this.$el.classList.add("ranger__scale-division");
+    this.$el.setAttribute("data-type", "scale-division");
+    if (orientation === "horizontal") {
+    } else if (orientation === "vertical") {
+      this.$el.classList.add("ranger-vert__scale-division");
     }
+    this.#setup();
+  }
 
-    #setup() {
-        this.clickHandler = this.clickHandler.bind( this )        /* Только для местных функций */
-        this.$el.addEventListener( 'click', this.clickHandler )
+  #setup() {
+    this.clickHandler =
+      this.clickHandler.bind(this); /* Только для местных функций */
+    this.$el.addEventListener("click", this.clickHandler);
+  }
+  async clickHandler(event) {
+    // clickMouse(event);
+    try {
+      const data = await clickMouse(event);
+      this.dispatch(actions.runnersMovement(data));
+    } catch (error) {
+      console.warn("Ошибка при клике на шкалу", error.message);
     }
-    clickHandler(event) {
-        clickMouse(event);
-    }
+  }
 }

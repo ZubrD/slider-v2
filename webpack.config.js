@@ -30,7 +30,7 @@ module.exports = (env, argv) => {
       },
     },
     devServer: {
-      port: '3000',
+      port: '3001',
       open: true,
       watchFiles: './',     // Этот параметр автоматические перезагружает страницу при изменении HTML
     },

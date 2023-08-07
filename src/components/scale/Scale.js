@@ -1,8 +1,8 @@
 import { SliderComponent } from "../../core/SliderComponent";
 
 export class Scale extends SliderComponent {
-    constructor(orientation) {
-        super()
+    constructor(orientation, options) {
+        super({...options})
         this.$el = document.createElement('div');
         this.$el.classList.add('ranger__scale');
         this.$el.setAttribute('data-type', 'scale')
