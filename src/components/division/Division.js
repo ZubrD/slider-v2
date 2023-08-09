@@ -20,6 +20,7 @@ export class Division extends SliderComponent {
       this.clickHandler.bind(this); /* Только для местных функций */
     this.$el.addEventListener("click", this.clickHandler);
   }
+  
   async clickHandler(event) {
     // clickMouse(event);
     try {

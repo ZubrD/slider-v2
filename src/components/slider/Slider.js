@@ -9,12 +9,6 @@ import { Scale } from "../scale/Scale";
 import { ScaleSpan } from "../scaleSpan/ScaleSpan";
 import { Settings } from "../settings/Settings";
 import { Panel } from "../panel/Panel";
-import {
-  changeMinListener,
-  changeMaxListener,
-  changeStepListener,
-  allChecksListener,
-} from "../../js/listeners";
 import { getCoords } from "../../js/scale";
 
 export class Slider {
@@ -51,13 +45,6 @@ export class Slider {
       /* Первоначальное размещение слайдера */
       sliderPositioning(runnerNumber, orientation);
     }
-    const numberOfSliders = document.querySelectorAll(
-      "[data-type='zdslider-panel']"
-    );
-    numberOfSliders.forEach((elem) => {
-      /* Слушатель переключателей */
-      elem.addEventListener("click", allChecksListener);
-    });
   }
 }
 
@@ -138,22 +125,19 @@ export function setStructure(
     );
     settings.appendTo(elem.parentNode);
     const panel = new Panel(store);
-    // console.log(panel)
     panel.appendTo(elem.parentNode);
     const confInputMin = document.querySelectorAll(
       "[data-type='zdslider-panel__min']"
     )[i];
-    confInputMin.setAttribute("data-min", String(min));
-    confInputMin.setAttribute("data-max", String(max));
+    // confInputMin.setAttribute("data-min", String(min));    // Вроде, не нужны, УБРАТЬ
+    // confInputMin.setAttribute("data-max", String(max));
     confInputMin.value = String(min);
-    confInputMin.addEventListener("change", changeMinListener);
     const confInputMax = document.querySelectorAll(
       "[data-type='zdslider-panel__max']"
     )[i];
-    confInputMax.setAttribute("data-min", String(min));
-    confInputMax.setAttribute("data-max", String(max));
+    // confInputMax.setAttribute("data-min", String(min));   // Вроде, не нужны, УБРАТЬ
+    // confInputMax.setAttribute("data-max", String(max));
     confInputMax.value = String(max);
-    confInputMax.addEventListener("change", changeMaxListener);
     const confInputStep = document.querySelectorAll(
       "[data-type='zdslider-panel__step']"
     )[i];
@@ -171,7 +155,7 @@ export function setStructure(
       confInputStep.disabled = true;
     }
     confInputStep.value = confInputStep.dataset.iteration;
-    confInputStep.addEventListener("input", changeStepListener);
+
     counter += 1;
     i += 1;
   });
@@ -197,7 +181,7 @@ export function sliderPositioning(runners, orientation) {
           Number(config.dataset.button_width) +
           2 +
           "px";
-        initialButtonPosition(i, runners);
+        // initialButtonPosition(i, runners);
       } else if (orientation == "vertical") {
         button1.style.marginTop = 0 + "px";
       }
@@ -211,7 +195,7 @@ export function sliderPositioning(runners, orientation) {
           Number(config.dataset.button_width) +
           "px";
         /* Исходные позиции бегунов сохраняю в конфиге */
-        initialButtonPosition(i, runners);
+        // initialButtonPosition(i, runners);
       } else if (orientation === "vertical") {
         button1.style.marginTop = config.dataset.height + "px";
         const button2 = document.querySelectorAll('[data-type="btn-second"]')[i];
@@ -230,7 +214,7 @@ export function initialButtonPosition(i, runners) {
   if (runners === 2) {
     const btn2 = document.querySelectorAll('[data-type="btn-second"]')[i];
     const initBtn2Pos = getCoords(btn2);
-    // config.dataset.btn2_init_pos = initBtn2Pos.left;
-    config.dataset.btn2_init_pos = 0;
+    config.dataset.btn2_init_pos = initBtn2Pos.left;
+    // config.dataset.btn2_init_pos = 0;
   }
 }

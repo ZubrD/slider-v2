@@ -4,44 +4,70 @@ import { showTip, hideTip, reValueTip } from '../js/tipToggler.js';
 import { orientationToggler } from '../js/orientToggler.js';
 import { resetBtnCoord } from '../js/mouse.js';
 /* Переключение количества ползунков через панель */
-export function allChecksListener(event) {
+export async function allChecksListener(event) {
     /* HTMLInputElement - т.к. метода checked нет для HTMLElement */
-    let elem = event.target;
-    let { run } = elem.dataset;
-    let { discrete } = elem.dataset;
-    let { tip } = elem.dataset;
-    let { orient } = elem.dataset;
-    let ranger = elem.parentNode.parentNode.querySelector("[data-type='ranger']");
-    let config = elem.parentNode.parentNode.querySelector("[data-type='config']");
+    const elem = event.target;
+    const { run } = elem.dataset;
+    const { discrete } = elem.dataset;
+    const { tip } = elem.dataset;
+    const { orient } = elem.dataset;
+    const ranger = elem.parentNode.parentNode.querySelector("[data-type='ranger']");
+    const config = elem.parentNode.parentNode.querySelector("[data-type='config']");
     /* Извлечение из конфига флага ориентации */
     let orientation = config.dataset.orientation;
     /* Извлечение из конфига номера экземпляра слайдера */
-    let instant = config.dataset.inst;
+    const instant = config.dataset.inst;
     if (run && elem.checked) {
         oneRunner(elem);
         /* Скрываю надписи */
         hideTip(elem);
         resetBtnCoord(event);
+        return {   // Передача флага дискретного хода бегунов в Panel для store                 
+            checkItem1: 'runners',
+            valueCheckItem1: config.dataset.runners,
+          }
     }
     else if (run && (!elem.checked)) {
         twoRunners(elem, instant);
         hideTip(elem);
         resetBtnCoord(event);
+        return {   // Передача флага дискретного хода бегунов в Panel для store                 
+            checkItem1: 'runners',
+            valueCheckItem1: config.dataset.runners,
+          }
     }
     /* Дискретный / плавный ход */
     if (discrete && elem.checked) {
         config.dataset.discrete = 'yes';
+        return {   // Передача флага дискретного хода бегунов в Panel для store                 
+            checkItem1: 'discrete',
+            valueCheckItem1: config.dataset.discrete,
+          }
     }
     else if (discrete && !elem.checked) {
         config.dataset.discrete = 'no';
+        return {
+            checkItem1: 'discrete',
+            valueCheckItem1: config.dataset.discrete,
+          }
     }
     /* Подписи к бегунам */
     if (tip && elem.checked) {
+        config.dataset.tip = 'yes'
         let element = event.target;
         showTip(element, orientation);
+        return {        // Передача флага подписи к бегунам в Panel для store
+            checkItem1: 'tip',
+            valueCheckItem1: config.dataset.tip,
+          }
     }
     else if (tip && !elem.checked) {
+        config.dataset.tip = 'no'
         hideTip(elem, orientation);
+        return {
+            checkItem1: 'tip',
+            valueCheckItem1: config.dataset.tip,
+          }
     }
     /* Смена ориентации */
     if (orient && elem.checked) {
@@ -51,76 +77,119 @@ export function allChecksListener(event) {
         orientation = config.dataset.orientation;
         orientationToggler(elem, orientation);
         resetBtnCoord(event);
+        return {            // Передача флага ориентации слажера в Panel для store
+            checkItem1: 'orientation',
+            valueCheckItem1: config.dataset.orientation,
+          }
     }
     else if (orient && (elem.checked === false)) {
         config.dataset.orientation = 'horizontal';
         orientation = config.dataset.orientation;
         orientationToggler(elem, orientation);
         resetBtnCoord(event);
+        return {
+            checkItem1: 'orientation',
+            valueCheckItem1: config.dataset.orientation,
+          }
     }
 }
+
 export function changeMinListener(event) {
-    let elem = event.target;
-    let config = elem.parentNode.parentNode.querySelector("[data-type='config']");
-    let parent = elem.parentNode;
-    let min = Number(elem.value);
-    let maxInput = parent.querySelector("[data-type='zdslider-panel__max']");
-    let max = Number(maxInput.value);
+    const config = event.target.parentNode.parentNode.querySelector("[data-type='config']");
+    const parent = event.target.parentNode;
+    const elem = parent.querySelector("[data-type='zdslider-panel__min']");
+    const min = Number(elem.value);
+    const maxInput = parent.querySelector("[data-type='zdslider-panel__max']");
+    const stepInput = parent.querySelector("[data-type='zdslider-panel__step']");
+    const max = Number(maxInput.value);
     /* Указал произвольный шаг */
-    let step = 1;
-    let newScaleArr = makeScale(min, max, step);
+    const step = 1;
+    const newScaleArr = makeScale(min, max, step);
     /* Передаю в конфиг */
     config.dataset.min = String(min);
-    config.dataset.max = String(max);
     reValueTip(elem);
-    let iteration = newScaleArr[1];
-    let iterationsArr = newScaleArr[2];
+    const iteration = newScaleArr[1];
+    const iterationsArr = newScaleArr[2];
     modifyScaleInput(parent, iteration, iterationsArr);
     /* ВНИМАНИЕ!!!! Здесь определил числовое значение как строку */
-    let currentInst = config.dataset.inst;
+    const currentInst = config.dataset.inst;
     /* Ограничитель, чтобы max не превышал min */
     maxInput.setAttribute('min', String(min));
     /* Перестроение шкалы по новому значению min */
     reScale(newScaleArr[0], currentInst);
+    return {                    
+        checkItem1: 'min',
+        valueCheckItem1: config.dataset.min,
+        checkItem2: 'minLimit',
+        valueCheckItem2: maxInput.getAttribute('min'),
+        checkItem3: 'scaleLength',
+        valueCheckItem3: config.dataset.scale_length,
+        checkItem4: 'steps',
+        valueCheckItem4: stepInput.dataset.steps || '',
+        checkItem5: 'current',
+        valueCheckItem5: stepInput.dataset.current,
+        checkItem6: 'stepMinLimit',
+        valueCheckItem6: stepInput.getAttribute('min'),
+        checkItem7: 'stepMaxLimit',
+        valueCheckItem7: stepInput.getAttribute('max')
+      }
 }
+
 export function changeMaxListener(event) {
-    let elem = event.target;
-    let config = elem.parentNode.parentNode.querySelector("[data-type='config']");
-    let parent = elem.parentNode;
-    let minInput = parent.querySelector("[data-type='zdslider-panel__min']");
-    let min = Number(minInput.value);
-    let max = Number(elem.value);
+    const config = event.target.parentNode.parentNode.querySelector("[data-type='config']");
+    const parent = event.target.parentNode;
+    const elem = parent.querySelector("[data-type='zdslider-panel__max']");
+    const minInput = parent.querySelector("[data-type='zdslider-panel__min']");
+    const stepInput = parent.querySelector("[data-type='zdslider-panel__step']");
+    const min = Number(minInput.value);
+    const max = Number(elem.value);
     /* Указал произвольный шаг */
-    let step = 1;
+    const step = 1;
     /* получение массивов */
-    let newScaleArr = makeScale(min, max, step);
+    const newScaleArr = makeScale(min, max, step);
     /* Передаю в конфиг */
-    config.dataset.min = String(min);
     config.dataset.max = String(max);
     reValueTip(elem);
-    let iteration = newScaleArr[1];
-    let iterationsArr = newScaleArr[2];
+    const iteration = newScaleArr[1];
+    const iterationsArr = newScaleArr[2];
     modifyScaleInput(parent, iteration, iterationsArr);
-    let currentInst = config.dataset.inst;
+    const currentInst = config.dataset.inst;
     /* Ограничитель, чтобы min не превышал max */
     minInput.setAttribute('max', String(max));
     /* Перестроение шкалы по новому значению min */
     reScale(newScaleArr[0], currentInst);
+    return {                    
+        checkItem1: 'max',
+        valueCheckItem1: config.dataset.max,
+        checkItem2: 'maxLimit',
+        valueCheckItem2: minInput.getAttribute('max'),
+        checkItem3: 'scaleLength',
+        valueCheckItem3: config.dataset.scale_length,
+        checkItem4: 'steps',
+        valueCheckItem4: stepInput.dataset.steps || '',
+        checkItem5: 'current',
+        valueCheckItem5: stepInput.dataset.current,
+        checkItem6: 'stepMinLimit',
+        valueCheckItem6: stepInput.getAttribute('min'),
+        checkItem7: 'stepMaxLimit',
+        valueCheckItem7: stepInput.getAttribute('max')
+      }
 }
 export function changeStepListener(event) {
-    let elem = event.target;
-    let config = elem.parentNode.parentNode.querySelector("[data-type='config']");
-    let parent = elem.parentNode;
-    let minInput = parent.querySelector("[data-type='zdslider-panel__min']");
-    let maxInput = parent.querySelector("[data-type='zdslider-panel__max']");
-    let min = Number(minInput.value);
-    let max = Number(maxInput.value);
-    let val = Number(elem.value);
-    let current = Number(elem.dataset.current);
-    let arr = elem.dataset.steps.split(',');
-    let arrNumber = arr.map(parseFloat);
+    const config = event.target.parentNode.parentNode.querySelector("[data-type='config']");
+    const parent = event.target.parentNode;
+    const elem = parent.querySelector("[data-type='zdslider-panel__step']");
+    const minInput = parent.querySelector("[data-type='zdslider-panel__min']");
+    const maxInput = parent.querySelector("[data-type='zdslider-panel__max']");
+    const stepInput = parent.querySelector("[data-type='zdslider-panel__step']");
+    const min = Number(minInput.value);
+    const max = Number(maxInput.value);
+    const val = Number(elem.value);
+    const current = Number(elem.dataset.current);
+    const arr = elem.dataset.steps.split(',');
+    const arrNumber = arr.map(parseFloat);
     /* Индекс текущего шага шкалы в массиве */
-    let currentIndex = arrNumber.indexOf(current);
+    const currentIndex = arrNumber.indexOf(current);
 
     if (current < val) {
         elem.dataset.current = String(arrNumber[currentIndex - 1]);
@@ -131,13 +200,20 @@ export function changeStepListener(event) {
         elem.dataset.current = String(arrNumber[currentIndex + 1]);
         elem.value = String(arrNumber[currentIndex + 1]);
     }
-    let currentInst = config.dataset.inst;
+    const currentInst = config.dataset.inst;
     /* val после изменения на значение из массива */
-    let step = Number(elem.value);
-    let newScaleArr = makeScale(min, max, step);
+    const step = Number(elem.value);
+    const newScaleArr = makeScale(min, max, step);
     /* Перестроение шкалы по новому значению шага */
     reScale(newScaleArr[0], currentInst);
+    return {                    // Функция простая, можно вызвать return в конце, без использования промиса
+        checkItem1: 'scaleLength',
+        valueCheckItem1: config.dataset.scale_length,
+        checkItem2: 'current',
+        valueCheckItem2: stepInput.dataset.current,
+      }
 }
+
 /* Сдвиг бегунов при изменении размера окна */
 window.addEventListener('resize', function () {
     let config = document.body.querySelector("[data-type='config']");

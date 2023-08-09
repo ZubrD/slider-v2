@@ -27,6 +27,7 @@ export class Button extends SliderComponent {
       this.clickHandler.bind(this); /* Только для местных функций */
     this.$el.addEventListener("mousedown", this.clickHandler);
   }
+  
   async clickHandler(event) {
     let elem = event.target;
     const { type } = elem.dataset;

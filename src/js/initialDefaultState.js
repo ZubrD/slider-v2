@@ -11,8 +11,8 @@ const tip = "no";
 
 const scaleArrs = makeScale(min, max, step);
 const scaleArr = scaleArrs[0];
-const iteration = scaleArrs[1];
-const iterationsArr = scaleArrs[2];
+// const iteration = scaleArrs[1];
+// const iterationsArr = scaleArrs[2];
 
 const scaleLength = scaleArr.length;
 const btn1_coord = 0;
@@ -22,6 +22,12 @@ const height = configObj.height;
 const buttonWidth = configObj.buttonWidth;
 const btn1_init_pos = 0;
 const btn2_init_pos = 0;
+const minLimit = 0
+const maxLimit = 0
+const steps = ""
+const current = ""
+const stepMinLimit = ""
+const stepMaxLimit = ""
 
 export const initialDefault = {
   sliderState: {
@@ -29,6 +35,8 @@ export const initialDefault = {
     runners,
     min,
     max,
+    minLimit,
+    maxLimit,
     discrete,
     orientation,
     tip,
@@ -40,7 +48,11 @@ export const initialDefault = {
     buttonWidth,
     btn1_init_pos,
     btn2_init_pos,
-    iteration,
-    iterationsArr
+    // iteration,
+    // iterationsArr,
+    steps,
+    current,
+    stepMinLimit,
+    stepMaxLimit
   },
 };
