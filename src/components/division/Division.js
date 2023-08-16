@@ -8,6 +8,7 @@ export class Division extends SliderComponent {
     this.$el = document.createElement("div");
     this.$el.classList.add("ranger__scale-division");
     this.$el.setAttribute("data-type", "scale-division");
+    this.store = options
     if (orientation === "horizontal") {
     } else if (orientation === "vertical") {
       this.$el.classList.add("ranger-vert__scale-division");
@@ -22,9 +23,9 @@ export class Division extends SliderComponent {
   }
   
   async clickHandler(event) {
-    // clickMouse(event);
     try {
       const data = await clickMouse(event);
+      console.log(data)
       this.dispatch(actions.runnersMovement(data));
     } catch (error) {
       console.warn("Ошибка при клике на шкалу", error.message);

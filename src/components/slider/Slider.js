@@ -10,25 +10,28 @@ import { ScaleSpan } from "../scaleSpan/ScaleSpan";
 import { Settings } from "../settings/Settings";
 import { Panel } from "../panel/Panel";
 import { getCoords } from "../../js/scale";
+import { setStyles } from "../../js/setStyles";
 
 export class Slider {
   constructor(options) {
     this.store = options.store;
   }
   init() {
-    const runnerNumber = configObj.runner_number;
-    const min = configObj.min;
-    const max = configObj.max;
+    const state = this.store.getState();
+    const sliderState = state.sliderState;
+    const runnerNumber = configObj.runner_number && Number(sliderState.runners);
+    const min = configObj.min && Number(sliderState.min);
+    const max = configObj.max && Number(sliderState.max);
     const step = 1;
-    const discrete = configObj.discrete;
-    const orientation = configObj.orientation;
+    const discrete = configObj.discrete && sliderState.discrete;
+    const orientation = configObj.orientation && sliderState.orientation;
     const scaleArrs = makeScale(min, max, step);
     /* Массив значений шкалы */
     const scaleArr = scaleArrs[0];
     const iteration = scaleArrs[1];
     const iterationsArr = scaleArrs[2];
     const elements = document.querySelectorAll(".zdslider");
-    const store = this.store
+    const store = this.store;
     if (elements.length != 0) {
       /* Создание структуры слайдера */
       setStructure(
@@ -45,6 +48,7 @@ export class Slider {
       /* Первоначальное размещение слайдера */
       sliderPositioning(runnerNumber, orientation);
     }
+    setStyles(state)  // Звдвние исходных стилей
   }
 }
 
@@ -61,6 +65,7 @@ export function setStructure(
   store
 ) {
   const elements = document.querySelectorAll(".zdslider");
+  const state = store.getState();
   /* Счётчик количества слайдеров для создания атрибутов */
   let counter = 1;
   /*  Счётчик цикла для определенияя номера ranger в массиве */
@@ -70,11 +75,20 @@ export function setStructure(
     } else if (orientation === "vertical") {
       elem.classList.add("zdslider-vert");
     }
+
+    //////////////////////////// Компонент Ranger ///////////////////////////
+
     const ranger = new Ranger(orientation, store);
     ranger.appendTo(elem);
+
+    //////////////////////////// Компонент Interval ///////////////////////////
+
     const interval = new Interval(orientation, store);
     const rangerDiv = document.querySelectorAll("[data-type='ranger']")[i];
     interval.appendTo(rangerDiv);
+
+    /////////////////////////// Компоненты Button ///////////////////////////////
+
     if (runners === 2) {
       const button_1 = new Button(orientation, store);
       const button_2 = new Button(orientation, store);
@@ -84,16 +98,21 @@ export function setStructure(
       button_2.appendTo(rangerDiv);
     } else {
       const button_1 = new Button(orientation, store);
-      console.log(button_1)
       button_1.setAttribute("data-type", "btn-first");
       button_1.appendTo(rangerDiv);
     }
+
+    //////////////////////////// Компонент Division ///////////////////////////////////
+
     const division = new Division(orientation, store);
     scaleArr.forEach((el) => {
       const span = new DivisionSpan(orientation, store);
       span.appendTo(division);
     });
     division.appendTo(elem);
+
+    //////////////////////////////// Компонент Scale ////////////////////////////////
+
     const scale = new Scale(orientation, store);
     scaleArr.forEach((el) => {
       const span = new ScaleSpan(orientation, store);
@@ -101,60 +120,40 @@ export function setStructure(
       span.inner_HTML(el);
     });
     scale.appendTo(elem);
+
+    /////////////////////////////// Компонент Settings ////////////////////////////////
     /* Слой для обмена данными между Моделью и Контроллером, Моделью и Представлением */
-    const settings = new Settings(store);
-    settings.setAttribute("data-inst", counter);
-    settings.setAttribute("data-runners", runners);
-    settings.setAttribute("data-min", min);
-    settings.setAttribute("data-max", max);
-    settings.setAttribute("data-discrete", discrete);
-    settings.setAttribute("data-orientation", orientation);
-    settings.setAttribute("data-tip", "no");
-    /* Для дискретного перемещения */
-    settings.setAttribute("data-scale_length", scaleArr.length);
-    /* Координаты первого бегуна */
-    settings.setAttribute("data-btn1_coord", 0);
-    /* Координаты второго бегуна */
-    settings.setAttribute("data-btn2_coord", rangerDiv.offsetWidth);
-    settings.setAttribute("data-width", String(rangerDiv.offsetWidth));
-    settings.setAttribute("data-height", String(rangerDiv.offsetHeight));
+    
     const button_1_div = document.querySelectorAll('[data-type="btn-first"]')[i];
-    settings.setAttribute(
-      "data-button_width",
-      String(button_1_div.offsetWidth)
+    const settings = new Settings(
+      store,
+      counter,
+      runners,
+      min,
+      max,
+      discrete,
+      orientation,
+      scaleArr,
+      rangerDiv,
+      button_1_div
     );
+
     settings.appendTo(elem.parentNode);
-    const panel = new Panel(store);
+
+    ///////////////////////////// Компонент Panel ////////////////////////////////
+
+    const panel = new Panel(
+      store,
+      runners,
+      discrete,
+      orientation,
+      min,
+      max,
+      iterationsArr,
+      iteration
+    );
     panel.appendTo(elem.parentNode);
-    const confInputMin = document.querySelectorAll(
-      "[data-type='zdslider-panel__min']"
-    )[i];
-    // confInputMin.setAttribute("data-min", String(min));    // Вроде, не нужны, УБРАТЬ
-    // confInputMin.setAttribute("data-max", String(max));
-    confInputMin.value = String(min);
-    const confInputMax = document.querySelectorAll(
-      "[data-type='zdslider-panel__max']"
-    )[i];
-    // confInputMax.setAttribute("data-min", String(min));   // Вроде, не нужны, УБРАТЬ
-    // confInputMax.setAttribute("data-max", String(max));
-    confInputMax.value = String(max);
-    const confInputStep = document.querySelectorAll(
-      "[data-type='zdslider-panel__step']"
-    )[i];
-    confInputStep.setAttribute("data-steps", String(iterationsArr));
-    confInputStep.setAttribute("data-iteration", String(iteration));
-    confInputStep.setAttribute("data-current", String(iteration));
-    if (iterationsArr.length !== 0) {
-      confInputStep.setAttribute("max", String(iterationsArr[0]));
-      confInputStep.setAttribute(
-        "min",
-        String(iterationsArr[iterationsArr.length - 1])
-      );
-    } else {
-      /* Если интервалов для шкалы нет, то делаю инпут неактивным */
-      confInputStep.disabled = true;
-    }
-    confInputStep.value = confInputStep.dataset.iteration;
+    
 
     counter += 1;
     i += 1;
@@ -189,7 +188,9 @@ export function sliderPositioning(runners, orientation) {
     if (runners === 2) {
       if (orientation === "horizontal") {
         button1.style.marginLeft = "0px";
-        const button2 = document.querySelectorAll('[data-type="btn-second"]')[i];
+        const button2 = document.querySelectorAll('[data-type="btn-second"]')[
+          i
+        ];
         button2.style.marginLeft =
           Number(config.dataset.width) -
           Number(config.dataset.button_width) +
@@ -198,7 +199,9 @@ export function sliderPositioning(runners, orientation) {
         // initialButtonPosition(i, runners);
       } else if (orientation === "vertical") {
         button1.style.marginTop = config.dataset.height + "px";
-        const button2 = document.querySelectorAll('[data-type="btn-second"]')[i];
+        const button2 = document.querySelectorAll('[data-type="btn-second"]')[
+          i
+        ];
         button2.style.marginTop = 0 + "px";
       }
     }

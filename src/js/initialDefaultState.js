@@ -29,6 +29,15 @@ const current = ""
 const stepMinLimit = ""
 const stepMaxLimit = ""
 
+// const intervalStyleWidth = ""
+// const intervalStyleHeight = ""
+// const intervalStyleMarginLeft = ""
+// const intervalStyleMarginTop = ""
+// const buttonFirstStyleMarginLeft = ""
+// const buttonSecondStyleMarginLeft = ""
+// const buttonFirstTip = 0
+// const buttonSecondTip = 0
+
 export const initialDefault = {
   sliderState: {
     inst: 1,
@@ -48,11 +57,17 @@ export const initialDefault = {
     buttonWidth,
     btn1_init_pos,
     btn2_init_pos,
-    // iteration,
-    // iterationsArr,
     steps,
     current,
     stepMinLimit,
-    stepMaxLimit
+    stepMaxLimit,
+    // intervalStyleWidth,
+    // intervalStyleHeight,
+    // intervalStyleMarginLeft,
+    // intervalStyleMarginTop,
+    // buttonFirstStyleMarginLeft,
+    // buttonSecondStyleMarginLeft,
+    // buttonFirstTip,
+    // buttonSecondTip
   },
 };

@@ -98,12 +98,12 @@ export function mouseDownBtnSecond(event) {
     };
     document.onmouseup = function () {
       resolve({
-        runner: "btn2_tip",
-        valueRunner: config.dataset.btn2_tip,
-        coord: "btn2_coord",
-        valueCoord: config.dataset.btn2_coord,
-        initPos: "btn2_init_pos",
-        valueInitPos: config.dataset.btn2_init_pos,
+        checkItem1: "btn2_tip",
+        valueCheckItem1: config.dataset.btn2_tip,
+        checkItem2: "btn2_coord",
+        valueCheckItem2: config.dataset.btn2_coord,
+        checkItem3: "btn2_init_pos",
+        valueCheckItem3: config.dataset.btn2_init_pos,
       });
       document.onmousemove = document.onmouseup = null;
     };
@@ -168,12 +168,12 @@ export function mouseDownBtnFirstSingle(event) {
     };
     document.onmouseup = function () {
       resolve({
-        runner: "btn1_tip",
-        valueRunner: config.dataset.btn1_tip,
-        coord: "btn1_coord",
-        valueCoord: config.dataset.btn1_coord,
-        initPos: "btn1_init_pos",
-        valueInitPos: config.dataset.btn1_init_pos,
+        checkItem1: "btn1_tip",
+        valueCheckItem1: config.dataset.btn1_tip,
+        checkItem2: "btn1_coord",
+        valueCheckItem2: config.dataset.btn1_coord,
+        checkItem3: "btn1_init_pos",
+        valueCheckItem3: config.dataset.btn1_init_pos,
       });
       document.onmousemove = document.onmouseup = null;
     };
@@ -266,12 +266,12 @@ export function mouseDownBtnFirstDouble(event) {
     };
     document.onmouseup = function () {
       resolve({
-        runner: "btn1_tip",
-        valueRunner: config.dataset.btn1_tip,
-        coord: "btn1_coord",
-        valueCoord: config.dataset.btn1_coord,
-        initPos: "btn1_init_pos",
-        valueInitPos: config.dataset.btn1_init_pos,
+        checkItem1: "btn1_tip",
+        valueCheckItem1: config.dataset.btn1_tip,
+        checkItem2: "btn1_coord",
+        valueCheckItem2: config.dataset.btn1_coord,
+        checkItem3: "btn1_init_pos",
+        valueCheckItem3: config.dataset.btn1_init_pos,
       });
       document.onmousemove = document.onmouseup = null;
     };

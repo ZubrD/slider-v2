@@ -3,6 +3,7 @@ import { oneRunner, twoRunners } from './runnerToggler.js';
 import { showTip, hideTip, reValueTip } from '../js/tipToggler.js';
 import { orientationToggler } from '../js/orientToggler.js';
 import { resetBtnCoord } from '../js/mouse.js';
+import { getConfigData } from './getConfigData.js';
 /* Переключение количества ползунков через панель */
 export async function allChecksListener(event) {
     /* HTMLInputElement - т.к. метода checked нет для HTMLElement */
@@ -13,6 +14,10 @@ export async function allChecksListener(event) {
     const { orient } = elem.dataset;
     const ranger = elem.parentNode.parentNode.querySelector("[data-type='ranger']");
     const config = elem.parentNode.parentNode.querySelector("[data-type='config']");
+    const interval = ranger.querySelector("[data-type='interval']")
+    const buttonFirst = ranger.querySelector("[data-type='btn-first']")
+    const buttonSecond = ranger.querySelector("[data-type='btn-second']")
+
     /* Извлечение из конфига флага ориентации */
     let orientation = config.dataset.orientation;
     /* Извлечение из конфига номера экземпляра слайдера */
@@ -80,6 +85,12 @@ export async function allChecksListener(event) {
         return {            // Передача флага ориентации слажера в Panel для store
             checkItem1: 'orientation',
             valueCheckItem1: config.dataset.orientation,
+            checkItem2: 'intervalStyleHeight',
+            valueCheckItem2: ranger.offsetHeight + 'px',
+            checkItem3: 'btn1_coord',
+            valueCheckItem3: config.dataset.btn1_coord,
+            checkItem4: 'btn2_coord',
+            valueCheckItem4: config.dataset.btn2_coord
           }
     }
     else if (orient && (elem.checked === false)) {
@@ -87,9 +98,31 @@ export async function allChecksListener(event) {
         orientation = config.dataset.orientation;
         orientationToggler(elem, orientation);
         resetBtnCoord(event);
+        console.log(interval.style.marginLeft)
+        getConfigData(elem)
         return {
             checkItem1: 'orientation',
             valueCheckItem1: config.dataset.orientation,
+            checkItem2: 'btn1_coord',
+            valueCheckItem2: config.dataset.btn1_coord,
+            checkItem3: 'btn2_coord',
+            valueCheckItem3: config.dataset.btn2_coord,
+            checkItem4: 'intervalStyleWidth',
+            valueCheckItem4: interval.style.width,
+            checkItem5: 'intervalStyleHeight',
+            valueCheckItem5: interval.style.height,  
+            checkItem6: 'intervalStyleMarginLeft',
+            valueCheckItem6: interval.style.marginLeft,  
+            // checkItem7: '',
+            // valueCheckItem7: '',  
+            // checkItem8: '',
+            // valueCheckItem8: '',  
+            // checkItem9: '',
+            // valueCheckItem9: '',  
+            // checkItem10: '',
+            // valueCheckItem10: '',  
+            // checkItem11: '',
+            // valueCheckItem11: '',              
           }
     }
 }
