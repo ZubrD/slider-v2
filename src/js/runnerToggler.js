@@ -25,6 +25,8 @@ export function oneRunner(elem) {
     interval.style.marginTop = 0 + "px";
     button1.style.marginTop = 0 + "px";
   }
+  const button3 = ranger.querySelector('[data-type="btn-second"]');
+  console.log('oneRunner закончила работу', button3)
 }
 
 export function twoRunners(elem, inst) {

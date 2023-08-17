@@ -11,8 +11,6 @@ const tip = "no";
 
 const scaleArrs = makeScale(min, max, step);
 const scaleArr = scaleArrs[0];
-// const iteration = scaleArrs[1];
-// const iterationsArr = scaleArrs[2];
 
 const scaleLength = scaleArr.length;
 const btn1_coord = 0;
@@ -28,15 +26,6 @@ const steps = ""
 const current = ""
 const stepMinLimit = ""
 const stepMaxLimit = ""
-
-// const intervalStyleWidth = ""
-// const intervalStyleHeight = ""
-// const intervalStyleMarginLeft = ""
-// const intervalStyleMarginTop = ""
-// const buttonFirstStyleMarginLeft = ""
-// const buttonSecondStyleMarginLeft = ""
-// const buttonFirstTip = 0
-// const buttonSecondTip = 0
 
 export const initialDefault = {
   sliderState: {
@@ -60,14 +49,6 @@ export const initialDefault = {
     steps,
     current,
     stepMinLimit,
-    stepMaxLimit,
-    // intervalStyleWidth,
-    // intervalStyleHeight,
-    // intervalStyleMarginLeft,
-    // intervalStyleMarginTop,
-    // buttonFirstStyleMarginLeft,
-    // buttonSecondStyleMarginLeft,
-    // buttonFirstTip,
-    // buttonSecondTip
+    stepMaxLimit
   },
 };

@@ -6,7 +6,7 @@ import { rootReducer } from "./redux/rootReducer";
 import "./scss/index.scss";
 
 const initial = storage('slider-state') || initialDefault
-console.log('Initial', initialDefault)
+console.log('Initial', initial)
 
 const store = createStore(rootReducer, initial);
 

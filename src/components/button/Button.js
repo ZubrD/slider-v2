@@ -38,25 +38,23 @@ export class Button extends SliderComponent {
     if (orientation === "horizontal") {
       if (type === "btn-first") {
         const data = await mouseDownBtnFirst(event);
-        this.dispatch(actions.runnersMovement(data))
         console.log(data)
+        this.dispatch(actions.runnersMovement(data))
       }
       if (type === "btn-second") {
         const data = await mouseDownBtnSecond(event);
         this.dispatch(actions.runnersMovement(data))
-        console.log(data)
       }
     }
     if (orientation === "vertical") {
       if (type === "btn-first") {
         const data = await mouseVertDownBtnFirst(event);
-        this.dispatch(actions.runnersMovement(data))
         console.log(data)
+        this.dispatch(actions.runnersMovement(data))
       }
       if (type === "btn-second") {
         const data = await mouseVertDownBtnSecond(event);
         this.dispatch(actions.runnersMovement(data))
-        console.log(data)
       }
     }
   }

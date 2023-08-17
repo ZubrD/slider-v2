@@ -29,14 +29,14 @@ export function mouseVertDownBtnSecond(event) {
       slerNumber - 1
     ];
     let interval = sler.querySelector("[data-type='interval']");
-    let btn1 = sler.querySelector('[data-type="btn-first"]');
-    let btn2 = sler.querySelector('[data-type="btn-second"]');
+    let buttonFirst = sler.querySelector('[data-type="btn-first"]');
+    let buttonSecond = sler.querySelector('[data-type="btn-second"]');
     let discreteStatus = config.dataset.discrete;
     /* Для дискретного перемещения */
     let intervalNumber = Number(config.dataset.scale_length) - 1;
     let slerCoords = getCoords(sler);
-    let btn1Coords = getCoords(btn1);
-    let btn2Coords = getCoords(btn2);
+    let btn1Coords = getCoords(buttonFirst);
+    let btn2Coords = getCoords(buttonSecond);
     let shiftY1 = event.pageY - btn1Coords.top;
     let shiftY2 = event.pageY - btn2Coords.top;
     document.onmousemove = function (event) {
@@ -46,7 +46,7 @@ export function mouseVertDownBtnSecond(event) {
       if (top2 < 0) top2 = 0;
 
       if (top2 > down2) top2 = down2;
-      btn2.style.marginTop = top2 + "px";
+      buttonSecond.style.marginTop = top2 + "px";
       shiftY1 = event.pageY - btn1Coords.top;
       let top1 = event.pageY - shiftY1 - slerCoords.top;
       let down1 = sler.offsetHeight;
@@ -69,13 +69,13 @@ export function mouseVertDownBtnSecond(event) {
               interval.style.height = num - top1 + "px";
               interval.style.marginTop = top1 + "px";
             }
-            btn2.style.marginTop = num + "px";
+            buttonSecond.style.marginTop = num + "px";
             let coords = sler.offsetHeight - num;
             config.dataset.btn2_coord = String(coords);
             /* Передача значения в конфиг */
             config.dataset.btn2_tip = String(forTip(elem, coords));
             /* Значение над бегуном */
-            btn2.dataset.tip = config.dataset.btn2_tip;
+            buttonSecond.dataset.tip = config.dataset.btn2_tip;
           }
         });
       } else if (discreteStatus === "no") {
@@ -93,15 +93,32 @@ export function mouseVertDownBtnSecond(event) {
         /* Передача значения в конфиг */
         config.dataset.btn2_tip = String(forTip(elem, coords));
         /* Значение над бегуном */
-        btn2.dataset.tip = config.dataset.btn2_tip;
+        buttonSecond.dataset.tip = config.dataset.btn2_tip;
       }
     };
     document.onmouseup = function () {
         resolve({
-            runner: "btn2_tip",
-            valueRunner: config.dataset.btn2_tip,
-            coord: "btn2_coord",
-            valueCoord: config.dataset.btn2_coord,
+            clickItem1: "btn2_tip",
+            valueClickItem1: config.dataset.btn2_tip,
+            clickItem2: "btn2_coord",
+            valueClickItem2: config.dataset.btn2_coord,
+
+            checkItem4: 'intervalStyleHeight',
+            valueCheckItem4: interval.style.height,            
+            checkItem5: 'intervalStyleWidth',
+            valueCheckItem5: interval.style.width,
+            checkItem6: 'intervalStyleMarginTop',
+            valueCheckItem6: interval.style.marginTop,
+            checkItem7: 'intervalStyleMarginLeft',
+            valueCheckItem7: interval.style.marginLeft,
+            checkItem8: 'buttonFirstStyleMarginTop',
+            valueCheckItem8: buttonFirst.style.marginTop,
+            checkItem9: 'buttonFirstStyleMarginLeft',
+            valueCheckItem9: buttonFirst.style.marginLeft,
+            checkItem10: 'buttonSecondStyleMarginTop',
+            valueCheckItem10: buttonSecond.style.marginTop,
+            checkItem11: 'buttonSecondStyleMarginLeft',
+            valueCheckItem11: buttonSecond.style.marginLeft
           });
       document.onmousemove = document.onmouseup = null;
     };
@@ -119,12 +136,12 @@ function mouseVertDownBtnFirstSingle(event) {
       slerNumber - 1
     ];
     let interval = sler.querySelector("[data-type='interval']");
-    let btn1 = sler.querySelector('[data-type="btn-first"]');
+    let buttonFirst = sler.querySelector('[data-type="btn-first"]');
     let discreteStatus = config.dataset.discrete;
     /* Для дискретного перемещения */
     let intervalNumber = Number(config.dataset.scale_length) - 1;
     let slerCoords = getCoords(sler);
-    let btn1Coords = getCoords(btn1);
+    let btn1Coords = getCoords(buttonFirst);
     /* Если не учитывать, то будет при первом перемещении бегунка скачок на эту величину */
     /* Это смещение клика от левого края бегунка, изменяется от 0 до ширины бегунка */
     let shiftY1 = event.pageY - btn1Coords.top;
@@ -140,7 +157,7 @@ function mouseVertDownBtnFirstSingle(event) {
         let integ = Math.floor(top1);
         discretArr.forEach((num) => {
           if (integ < num + range / 2 && integ > num - range / 2) {
-            btn1.style.marginTop = num + "px";
+            buttonFirst.style.marginTop = num + "px";
             interval.style.marginTop = num + "px";
             interval.style.height = sler.offsetHeight - num + "px";
             /* Инвертирование значения */
@@ -149,14 +166,14 @@ function mouseVertDownBtnFirstSingle(event) {
             /* Передача значения в конфиг */
             config.dataset.btn1_tip = String(forTip(elem, coords));
             /* Значение над бегуном */
-            btn1.dataset.tip = config.dataset.btn1_tip;
+            buttonFirst.dataset.tip = config.dataset.btn1_tip;
           }
         });
       } else if (discreteStatus === "no") {
         if (top1 < 0) top1 = 0;
 
         if (top1 > down1) top1 = down1;
-        btn1.style.marginTop = top1 + "px";
+        buttonFirst.style.marginTop = top1 + "px";
         interval.style.marginTop = top1 + "px";
         interval.style.height = sler.offsetHeight - top1 + "px";
         /* Инвертирование значения */
@@ -165,15 +182,32 @@ function mouseVertDownBtnFirstSingle(event) {
         /* Передача значения в конфиг */
         config.dataset.btn1_tip = String(forTip(elem, coords));
         /* Значение над бегуном */
-        btn1.dataset.tip = config.dataset.btn1_tip;
+        buttonFirst.dataset.tip = config.dataset.btn1_tip;
       }
     };
     document.onmouseup = function () {
         resolve({
-            runner: "btn1_tip",
-            valueRunner: config.dataset.btn1_tip,
-            coord: "btn1_coord",
-            valueCoord: config.dataset.btn1_coord,
+            clickItem1: "btn1_tip",
+            valueClickItem1: config.dataset.btn1_tip,
+            clickItem2: "btn1_coord",
+            valueClickItem2: config.dataset.btn1_coord,
+
+            checkItem4: 'intervalStyleHeight',
+            valueCheckItem4: interval.style.height,            
+            checkItem5: 'intervalStyleWidth',
+            valueCheckItem5: interval.style.width,
+            checkItem6: 'intervalStyleMarginTop',
+            valueCheckItem6: interval.style.marginTop,
+            checkItem7: 'intervalStyleMarginLeft',
+            valueCheckItem7: interval.style.marginLeft,
+            checkItem8: 'buttonFirstStyleMarginTop',
+            valueCheckItem8: buttonFirst.style.marginTop,
+            checkItem9: 'buttonFirstStyleMarginLeft',
+            valueCheckItem9: buttonFirst.style.marginLeft,
+            // checkItem10: 'buttonSecondStyleMarginTop',
+            // valueCheckItem10: buttonSecond.style.marginTop,
+            // checkItem11: 'buttonSecondStyleMarginLeft',
+            // valueCheckItem11: buttonSecond.style.marginLeft
           });
       document.onmousemove = document.onmouseup = null;
     };
@@ -190,14 +224,14 @@ function mouseVertDownBtnFirstDouble(event) {
       slerNumber - 1
     ];
     let interval = sler.querySelector("[data-type='interval']");
-    let btn1 = sler.querySelector('[data-type="btn-first"]');
-    let btn2 = sler.querySelector('[data-type="btn-second"]');
+    let buttonFirst = sler.querySelector('[data-type="btn-first"]');
+    let buttonSecond = sler.querySelector('[data-type="btn-second"]');
     let discreteStatus = config.dataset.discrete;
     let intervalNumber =
       Number(config.dataset.scale_length) - 1; /* Для дискретного перемещения */
     let slerCoords = getCoords(sler);
-    let btn1Coords = getCoords(btn1);
-    let btn2Coords = getCoords(btn2);
+    let btn1Coords = getCoords(buttonFirst);
+    let btn2Coords = getCoords(buttonSecond);
     /* Если не учитывать, то будет при первом перемещении бегунка скачок на эту величину */
     /* Это смещение клика от левого края бегунка, изменяется от 0 до ширины бегунка */
     let shiftY1 = event.pageY - btn1Coords.top;
@@ -228,18 +262,18 @@ function mouseVertDownBtnFirstDouble(event) {
               interval.style.height = top2 - num + "px";
               interval.style.marginTop = num + "px";
             }
-            btn1.style.marginTop = num + "px";
+            buttonFirst.style.marginTop = num + "px";
             let coords = sler.offsetHeight - num;
             config.dataset.btn1_coord = String(coords);
             /* Передача значения в конфиг */
             config.dataset.btn1_tip = String(forTip(elem, coords));
             /* Значение над бегуном */
-            btn1.dataset.tip = config.dataset.btn1_tip;
+            buttonFirst.dataset.tip = config.dataset.btn1_tip;
           }
           counter += 1;
         });
       } else if (discreteStatus === "no") {
-        btn1.style.marginTop = top1 + "px";
+        buttonFirst.style.marginTop = top1 + "px";
         shiftY2 = event.pageY - btn2Coords.top;
         let top2 = event.pageY - shiftY2 - slerCoords.top;
         let down2 = sler.offsetHeight;
@@ -262,15 +296,32 @@ function mouseVertDownBtnFirstDouble(event) {
         /* Передача значения в конфиг */
         config.dataset.btn1_tip = String(forTip(elem, coords));
         /* Значение над бегуном */
-        btn1.dataset.tip = config.dataset.btn1_tip;
+        buttonFirst.dataset.tip = config.dataset.btn1_tip;
       }
     };
     document.onmouseup = function () {
         resolve({
-            runner: "btn1_tip",
-            valueRunner: config.dataset.btn1_tip,
-            coord: "btn1_coord",
-            valueCoord: config.dataset.btn1_coord,
+            clickItem1: "btn1_tip",
+            valueClickItem1: config.dataset.btn1_tip,
+            clickItem2: "btn1_coord",
+            valueClickItem2: config.dataset.btn1_coord,
+
+            checkItem4: 'intervalStyleHeight',
+            valueCheckItem4: interval.style.height,            
+            checkItem5: 'intervalStyleWidth',
+            valueCheckItem5: interval.style.width,
+            checkItem6: 'intervalStyleMarginTop',
+            valueCheckItem6: interval.style.marginTop,
+            checkItem7: 'intervalStyleMarginLeft',
+            valueCheckItem7: interval.style.marginLeft,
+            checkItem8: 'buttonFirstStyleMarginTop',
+            valueCheckItem8: buttonFirst.style.marginTop,
+            checkItem9: 'buttonFirstStyleMarginLeft',
+            valueCheckItem9: buttonFirst.style.marginLeft,
+            checkItem10: 'buttonSecondStyleMarginTop',
+            valueCheckItem10: buttonSecond.style.marginTop,
+            checkItem11: 'buttonSecondStyleMarginLeft',
+            valueCheckItem11: buttonSecond.style.marginLeft
           });
       document.onmousemove = document.onmouseup = null;
     };

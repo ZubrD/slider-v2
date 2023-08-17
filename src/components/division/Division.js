@@ -23,9 +23,9 @@ export class Division extends SliderComponent {
   }
   
   async clickHandler(event) {
+    
     try {
       const data = await clickMouse(event);
-      console.log(data)
       this.dispatch(actions.runnersMovement(data));
     } catch (error) {
       console.warn("Ошибка при клике на шкалу", error.message);

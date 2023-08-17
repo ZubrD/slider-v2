@@ -15,6 +15,7 @@ export function rootReducer(state, action) {
       prevState[action.data.checkItem9] = action.data.valueCheckItem9
       prevState[action.data.checkItem10] = action.data.valueCheckItem10
       prevState[action.data.checkItem11] = action.data.valueCheckItem11
+      prevState[action.data.checkItem12] = action.data.valueCheckItem12
       return {...state, sliderState: prevState}
     default: return state
   }

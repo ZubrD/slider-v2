@@ -10,7 +10,7 @@ export async function mouseDownBtnFirst(event) {
   if (runnerNumber === 1) {
     /* если один бегун */
     const data = await mouseDownBtnFirstSingle(event);
-    return data
+    return data;
   } else if (runnerNumber === 2) {
     /* первый бегун (левый) если бегунов два */
     const data = await mouseDownBtnFirstDouble(event);
@@ -29,30 +29,30 @@ export function mouseDownBtnSecond(event) {
       slerNumber - 1
     ];
     let interval = sler.querySelector("[data-type='interval']");
-    let btn1 = sler.querySelector('[data-type="btn-first"]');
-    let btn2 = sler.querySelector('[data-type="btn-second"]');
+    let buttonFirst = sler.querySelector('[data-type="btn-first"]');
+    let buttonSecond = sler.querySelector('[data-type="btn-second"]');
     let discreteStatus = config.dataset.discrete;
     /* Для дискретного перемещения */
     let interval_number = Number(config.dataset.scale_length) - 1;
     let slerCoords = getCoords(sler);
-    let btn1Coords = getCoords(btn1);
-    let btn2Coords = getCoords(btn2);
+    let btn1Coords = getCoords(buttonFirst);
+    let btn2Coords = getCoords(buttonSecond);
     let shiftX1 = event.pageX - btn1Coords.left;
     let shiftX2 = event.pageX - btn2Coords.left;
     document.onmousemove = function (event) {
       let left2 = event.pageX - shiftX2 - slerCoords.left;
-      let right2 = sler.offsetWidth - btn2.offsetWidth;
+      let right2 = sler.offsetWidth - buttonSecond.offsetWidth;
 
       if (left2 < 0) left2 = 0;
 
       if (left2 > right2) left2 = right2;
-      btn2.style.marginLeft = left2 + "px";
+      buttonSecond.style.marginLeft = left2 + "px";
       config.dataset.btn2_coord = String(left2);
       /* Дублирую, чтобы бегуны не выпадали за пределы слайдера при изменении ширины окна */
       config.dataset.btn2_init_pos = String(left2);
       shiftX1 = event.pageX - btn1Coords.left;
       let left1 = event.pageX - shiftX1 - slerCoords.left;
-      let right1 = sler.offsetWidth - btn1.offsetWidth;
+      let right1 = sler.offsetWidth - buttonFirst.offsetWidth;
 
       if (left1 < 0) left1 = 0;
 
@@ -72,20 +72,20 @@ export function mouseDownBtnSecond(event) {
               interval.style.width = num - left1 + "px";
               interval.style.marginLeft = left1 + "px";
             }
-            btn2.style.marginLeft = num + "px";
+            buttonSecond.style.marginLeft = num + "px";
             config.dataset.btn2_coord = String(num);
             config.dataset.btn2_init_pos = String(num);
             /* Передача значения в конфиг */
             config.dataset.btn2_tip = forTip(elem, num);
             /* Значение над бегуном */
-            btn2.dataset.tip = config.dataset.btn2_tip;
+            buttonSecond.dataset.tip = config.dataset.btn2_tip;
           }
         });
       } else if (discreteStatus === "no") {
         /* Передача значения в конфиг */
         config.dataset.btn2_tip = forTip(elem, left2);
         /* Значение над бегуном */
-        btn2.dataset.tip = config.dataset.btn2_tip;
+        buttonSecond.dataset.tip = config.dataset.btn2_tip;
 
         if (left1 > left2) {
           interval.style.width = left1 - left2 + "px";
@@ -94,9 +94,11 @@ export function mouseDownBtnSecond(event) {
           interval.style.width = left2 - left1 + "px";
           interval.style.marginLeft = left1 + "px";
         }
+        console.log('second')
       }
     };
     document.onmouseup = function () {
+      console.log('second button')
       resolve({
         checkItem1: "btn2_tip",
         valueCheckItem1: config.dataset.btn2_tip,
@@ -104,6 +106,23 @@ export function mouseDownBtnSecond(event) {
         valueCheckItem2: config.dataset.btn2_coord,
         checkItem3: "btn2_init_pos",
         valueCheckItem3: config.dataset.btn2_init_pos,
+
+        checkItem4: 'intervalStyleHeight',
+        valueCheckItem4: interval.style.height,            
+        checkItem5: 'intervalStyleWidth',
+        valueCheckItem5: interval.style.width,
+        checkItem6: 'intervalStyleMarginTop',
+        valueCheckItem6: interval.style.marginTop,
+        checkItem7: 'intervalStyleMarginLeft',
+        valueCheckItem7: interval.style.marginLeft,
+        checkItem8: 'buttonFirstStyleMarginTop',
+        valueCheckItem8: buttonFirst.style.marginTop,
+        checkItem9: 'buttonFirstStyleMarginLeft',
+        valueCheckItem9: buttonFirst.style.marginLeft,
+        checkItem10: 'buttonSecondStyleMarginTop',
+        valueCheckItem10: buttonSecond.style.marginTop,
+        checkItem11: 'buttonSecondStyleMarginLeft',
+        valueCheckItem11: buttonSecond.style.marginLeft
       });
       document.onmousemove = document.onmouseup = null;
     };
@@ -120,18 +139,18 @@ export function mouseDownBtnFirstSingle(event) {
       slerNumber - 1
     ];
     const interval = sler.querySelector("[data-type='interval']");
-    const btn1 = sler.querySelector('[data-type="btn-first"]');
+    const buttonFirst = sler.querySelector('[data-type="btn-first"]');
     const discreteStatus = config.dataset.discrete;
     /* Для дискретного перемещения */
     const intervalNumber = Number(config.dataset.scale_length) - 1;
     const slerCoords = getCoords(sler);
-    const btn1Coords = getCoords(btn1);
+    const btn1Coords = getCoords(buttonFirst);
     /* Если не учитывать, то будет при первом перемещении бегунка скачок на эту величину */
     /* Это смещение клика от левого края бегунка, изменяется от 0 до ширины бегунка */
     let shiftX1 = event.pageX - btn1Coords.left;
     document.onmousemove = function (event) {
       let left1 = event.pageX - shiftX1 - slerCoords.left;
-      let right1 = sler.offsetWidth - btn1.offsetWidth;
+      let right1 = sler.offsetWidth - buttonFirst.offsetWidth;
       if (discreteStatus === "yes") {
         if (left1 < 0) left1 = 0;
 
@@ -141,7 +160,7 @@ export function mouseDownBtnFirstSingle(event) {
         let integ = Math.floor(left1);
         discretArr.forEach((num) => {
           if (integ < num + range / 2 && integ > num - range / 2) {
-            btn1.style.marginLeft = num + "px";
+            buttonFirst.style.marginLeft = num + "px";
             interval.style.width = num + "px";
             config.dataset.btn1_coord = String(num);
             /* Дублирую, чтобы бегуны не выпадали за пределы слайдера при изменении ширины окна */
@@ -149,21 +168,21 @@ export function mouseDownBtnFirstSingle(event) {
             /* Передача значения в конфиг */
             config.dataset.btn1_tip = forTip(elem, num);
             /* Значение над бегуном */
-            btn1.dataset.tip = config.dataset.btn1_tip;
+            buttonFirst.dataset.tip = config.dataset.btn1_tip;
           }
         });
       } else if (discreteStatus === "no") {
         if (left1 < 0) left1 = 0;
 
         if (left1 > right1) left1 = right1;
-        btn1.style.marginLeft = left1 + "px";
+        buttonFirst.style.marginLeft = left1 + "px";
         interval.style.width = left1 + "px";
         config.dataset.btn1_coord = String(left1);
         config.dataset.btn1_init_pos = String(left1);
         /* Передача значения в конфиг */
         config.dataset.btn1_tip = forTip(elem, left1);
         /* Значение над бегуном */
-        btn1.dataset.tip = config.dataset.btn1_tip;
+        buttonFirst.dataset.tip = config.dataset.btn1_tip;
       }
     };
     document.onmouseup = function () {
@@ -174,6 +193,23 @@ export function mouseDownBtnFirstSingle(event) {
         valueCheckItem2: config.dataset.btn1_coord,
         checkItem3: "btn1_init_pos",
         valueCheckItem3: config.dataset.btn1_init_pos,
+
+        checkItem4: 'intervalStyleHeight',
+        valueCheckItem4: interval.style.height,            
+        checkItem5: 'intervalStyleWidth',
+        valueCheckItem5: interval.style.width,
+        checkItem6: 'intervalStyleMarginTop',
+        valueCheckItem6: interval.style.marginTop,
+        checkItem7: 'intervalStyleMarginLeft',
+        valueCheckItem7: interval.style.marginLeft,
+        checkItem8: 'buttonFirstStyleMarginTop',
+        valueCheckItem8: buttonFirst.style.marginTop,
+        checkItem9: 'buttonFirstStyleMarginLeft',
+        valueCheckItem9: buttonFirst.style.marginLeft,
+        // checkItem10: 'buttonSecondStyleMarginTop',
+        // valueCheckItem10: buttonSecond.style.marginTop,
+        // checkItem11: 'buttonSecondStyleMarginLeft',
+        // valueCheckItem11: buttonSecond.style.marginLeft
       });
       document.onmousemove = document.onmouseup = null;
     };
@@ -190,21 +226,21 @@ export function mouseDownBtnFirstDouble(event) {
       slerNumber - 1
     ];
     let interval = sler.querySelector("[data-type='interval']");
-    let btn1 = sler.querySelector('[data-type="btn-first"]');
-    let btn2 = sler.querySelector('[data-type="btn-second"]');
+    let buttonFirst = sler.querySelector('[data-type="btn-first"]');
+    let buttonSecond = sler.querySelector('[data-type="btn-second"]');
     let discreteStatus = config.dataset.discrete;
     /* Для дискретного перемещения */
     let intervalNumber = Number(config.dataset.scale_length) - 1;
     let slerCoords = getCoords(sler);
-    let btn1Coords = getCoords(btn1);
-    let btn2Coords = getCoords(btn2);
+    let btn1Coords = getCoords(buttonFirst);
+    let btn2Coords = getCoords(buttonSecond);
     /* Если не учитывать, то будет при первом перемещении бегунка скачок на эту величину */
     /* Это смещение клика от левого края бегунка, изменяется от 0 до ширины бегунка */
     let shiftX1 = event.pageX - btn1Coords.left;
     let shiftX2 = event.pageX - btn2Coords.left;
     document.onmousemove = function (event) {
       let left1 = event.pageX - shiftX1 - slerCoords.left;
-      let right1 = sler.offsetWidth - btn1.offsetWidth;
+      let right1 = sler.offsetWidth - buttonFirst.offsetWidth;
       shiftX2 = event.pageX - btn2Coords.left;
       let left2 = event.pageX - shiftX2 - slerCoords.left;
       let right2 = sler.offsetWidth;
@@ -229,24 +265,24 @@ export function mouseDownBtnFirstDouble(event) {
               interval.style.width = left2 - num + "px";
               interval.style.marginLeft = num + "px";
             }
-            btn1.style.marginLeft = num + "px";
+            buttonFirst.style.marginLeft = num + "px";
             config.dataset.btn1_coord = String(num);
             config.dataset.btn1_init_pos = String(num);
             /* Передача значения в конфиг */
             config.dataset.btn1_tip = forTip(elem, num);
             /* Извлечение из конфига значения над бегуном */
-            btn1.dataset.tip = config.dataset.btn1_tip;
+            buttonFirst.dataset.tip = config.dataset.btn1_tip;
           }
           counter += 1;
         });
       } else if (discreteStatus === "no") {
-        btn1.style.marginLeft = left1 + "px";
+        buttonFirst.style.marginLeft = left1 + "px";
         config.dataset.btn1_coord = String(left1);
         config.dataset.btn1_init_pos = String(left1);
         /* Передача значения в конфиг */
         config.dataset.btn1_tip = forTip(elem, left1);
         /* Значение над бегуном */
-        btn1.dataset.tip = config.dataset.btn1_tip;
+        buttonFirst.dataset.tip = config.dataset.btn1_tip;
         shiftX2 = event.pageX - btn2Coords.left;
         let left2 = event.pageX - shiftX2 - slerCoords.left;
         let right2 = sler.offsetWidth;
@@ -272,6 +308,23 @@ export function mouseDownBtnFirstDouble(event) {
         valueCheckItem2: config.dataset.btn1_coord,
         checkItem3: "btn1_init_pos",
         valueCheckItem3: config.dataset.btn1_init_pos,
+
+        checkItem4: 'intervalStyleHeight',
+        valueCheckItem4: interval.style.height,            
+        checkItem5: 'intervalStyleWidth',
+        valueCheckItem5: interval.style.width,
+        checkItem6: 'intervalStyleMarginTop',
+        valueCheckItem6: interval.style.marginTop,
+        checkItem7: 'intervalStyleMarginLeft',
+        valueCheckItem7: interval.style.marginLeft,
+        checkItem8: 'buttonFirstStyleMarginTop',
+        valueCheckItem8: buttonFirst.style.marginTop,
+        checkItem9: 'buttonFirstStyleMarginLeft',
+        valueCheckItem9: buttonFirst.style.marginLeft,
+        checkItem10: 'buttonSecondStyleMarginTop',
+        valueCheckItem10: buttonSecond.style.marginTop,
+        checkItem11: 'buttonSecondStyleMarginLeft',
+        valueCheckItem11: buttonSecond.style.marginLeft
       });
       document.onmousemove = document.onmouseup = null;
     };
