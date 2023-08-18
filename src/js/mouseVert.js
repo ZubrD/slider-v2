@@ -96,12 +96,13 @@ export function mouseVertDownBtnSecond(event) {
         buttonSecond.dataset.tip = config.dataset.btn2_tip;
       }
     };
+    console.log('btn2_coord', config.dataset.btn2_coord)
     document.onmouseup = function () {
         resolve({
-            clickItem1: "btn2_tip",
-            valueClickItem1: config.dataset.btn2_tip,
-            clickItem2: "btn2_coord",
-            valueClickItem2: config.dataset.btn2_coord,
+            checkItem1: "btn2_tip",
+            valueCheckItem1: config.dataset.btn2_tip,
+            checkItem2: "btn2_coord",
+            valueCheckItem2: config.dataset.btn2_coord,
           });
       document.onmousemove = document.onmouseup = null;
     };
@@ -170,10 +171,10 @@ function mouseVertDownBtnFirstSingle(event) {
     };
     document.onmouseup = function () {
         resolve({
-            clickItem1: "btn1_tip",
-            valueClickItem1: config.dataset.btn1_tip,
-            clickItem2: "btn1_coord",
-            valueClickItem2: config.dataset.btn1_coord,
+            checkItem1: "btn1_tip",
+            valueCheckItem1: config.dataset.btn1_tip,
+            checkItem2: "btn1_coord",
+            valueCheckItem2: config.dataset.btn1_coord,
           });
       document.onmousemove = document.onmouseup = null;
     };
@@ -267,10 +268,10 @@ function mouseVertDownBtnFirstDouble(event) {
     };
     document.onmouseup = function () {
         resolve({
-            clickItem1: "btn1_tip",
-            valueClickItem1: config.dataset.btn1_tip,
-            clickItem2: "btn1_coord",
-            valueClickItem2: config.dataset.btn1_coord,
+            checkItem1: "btn1_tip",
+            valueCheckItem1: config.dataset.btn1_tip,
+            checkItem2: "btn1_coord",
+            valueCheckItem2: config.dataset.btn1_coord,
           });
       document.onmousemove = document.onmouseup = null;
     };
