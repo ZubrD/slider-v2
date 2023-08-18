@@ -40,13 +40,15 @@ export function forTip(target, coord) {
 }
 export function reValueTip(element) {
     /* Изменение значения атрибута tip  при изменении min, max в панели */
-    let parent = element.parentNode.parentNode;
-    let zdslider = parent.querySelector('.zdslider');
-    let input = parent.querySelector("[data-type='tip']");
+    const parent = element.parentNode.parentNode;
+    const zdslider = parent.querySelector('.zdslider');
+    const input = parent.querySelector("[data-type='tip']");
     input.checked = false;
-    let buttons = zdslider.querySelectorAll("[data-button='button']");
+    const buttons = zdslider.querySelectorAll("[data-button='button']");
     buttons.forEach((elem) => {
         elem.dataset.tip = '';
     });
     hideTip(element);
+    const config = parent.querySelector("[data-type='config']");
+    config.dataset.tip = 'no'
 }
