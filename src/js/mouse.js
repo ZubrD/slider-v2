@@ -1,4 +1,3 @@
-import { async } from "regenerator-runtime";
 import { getCoords } from "../js/scale.js";
 import { forTip } from "../js/tipToggler.js";
 export async function mouseDownBtnFirst(event) {
@@ -106,23 +105,6 @@ export function mouseDownBtnSecond(event) {
         valueCheckItem2: config.dataset.btn2_coord,
         checkItem3: "btn2_init_pos",
         valueCheckItem3: config.dataset.btn2_init_pos,
-
-        checkItem4: 'intervalStyleHeight',
-        valueCheckItem4: interval.style.height,            
-        checkItem5: 'intervalStyleWidth',
-        valueCheckItem5: interval.style.width,
-        checkItem6: 'intervalStyleMarginTop',
-        valueCheckItem6: interval.style.marginTop,
-        checkItem7: 'intervalStyleMarginLeft',
-        valueCheckItem7: interval.style.marginLeft,
-        checkItem8: 'buttonFirstStyleMarginTop',
-        valueCheckItem8: buttonFirst.style.marginTop,
-        checkItem9: 'buttonFirstStyleMarginLeft',
-        valueCheckItem9: buttonFirst.style.marginLeft,
-        checkItem10: 'buttonSecondStyleMarginTop',
-        valueCheckItem10: buttonSecond.style.marginTop,
-        checkItem11: 'buttonSecondStyleMarginLeft',
-        valueCheckItem11: buttonSecond.style.marginLeft
       });
       document.onmousemove = document.onmouseup = null;
     };
@@ -193,23 +175,6 @@ export function mouseDownBtnFirstSingle(event) {
         valueCheckItem2: config.dataset.btn1_coord,
         checkItem3: "btn1_init_pos",
         valueCheckItem3: config.dataset.btn1_init_pos,
-
-        checkItem4: 'intervalStyleHeight',
-        valueCheckItem4: interval.style.height,            
-        checkItem5: 'intervalStyleWidth',
-        valueCheckItem5: interval.style.width,
-        checkItem6: 'intervalStyleMarginTop',
-        valueCheckItem6: interval.style.marginTop,
-        checkItem7: 'intervalStyleMarginLeft',
-        valueCheckItem7: interval.style.marginLeft,
-        checkItem8: 'buttonFirstStyleMarginTop',
-        valueCheckItem8: buttonFirst.style.marginTop,
-        checkItem9: 'buttonFirstStyleMarginLeft',
-        valueCheckItem9: buttonFirst.style.marginLeft,
-        // checkItem10: 'buttonSecondStyleMarginTop',
-        // valueCheckItem10: buttonSecond.style.marginTop,
-        // checkItem11: 'buttonSecondStyleMarginLeft',
-        // valueCheckItem11: buttonSecond.style.marginLeft
       });
       document.onmousemove = document.onmouseup = null;
     };
@@ -308,23 +273,6 @@ export function mouseDownBtnFirstDouble(event) {
         valueCheckItem2: config.dataset.btn1_coord,
         checkItem3: "btn1_init_pos",
         valueCheckItem3: config.dataset.btn1_init_pos,
-
-        checkItem4: 'intervalStyleHeight',
-        valueCheckItem4: interval.style.height,            
-        checkItem5: 'intervalStyleWidth',
-        valueCheckItem5: interval.style.width,
-        checkItem6: 'intervalStyleMarginTop',
-        valueCheckItem6: interval.style.marginTop,
-        checkItem7: 'intervalStyleMarginLeft',
-        valueCheckItem7: interval.style.marginLeft,
-        checkItem8: 'buttonFirstStyleMarginTop',
-        valueCheckItem8: buttonFirst.style.marginTop,
-        checkItem9: 'buttonFirstStyleMarginLeft',
-        valueCheckItem9: buttonFirst.style.marginLeft,
-        checkItem10: 'buttonSecondStyleMarginTop',
-        valueCheckItem10: buttonSecond.style.marginTop,
-        checkItem11: 'buttonSecondStyleMarginLeft',
-        valueCheckItem11: buttonSecond.style.marginLeft
       });
       document.onmousemove = document.onmouseup = null;
     };

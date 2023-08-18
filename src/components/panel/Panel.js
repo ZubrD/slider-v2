@@ -1,4 +1,5 @@
 import { SliderComponent } from "../../core/SliderComponent";
+import { addStylesToDispatch } from "../../js/addStylesToDispatch";
 import {
   allChecksListener,
   changeMaxListener,
@@ -139,30 +140,38 @@ export class Panel extends SliderComponent {
 
   async clickHandler(event) {
     const data = await allChecksListener(event);
+    const styles = addStylesToDispatch();
+    const dataToDispatch = { ...data, ...styles };
     if (data) {
-      this.dispatch(actions.runnersMovement(data)); // Передача в state значений переключателей из панели
+      this.dispatch(actions.runnersMovement(dataToDispatch)); // Передача в state значений переключателей из панели
     }
   }
 
   clickHandlerMin(event) {
     const dataMin = changeMinListener(event);
+    const styles = addStylesToDispatch();
+    const dataToDispatch = { ...dataMin, ...styles };
     console.log(dataMin)
     if (dataMin) {
-      this.dispatch(actions.runnersMovement(dataMin)); // Передача в state значений после события изменения минимального значения
+      this.dispatch(actions.runnersMovement(dataToDispatch)); // Передача в state значений после события изменения минимального значения
     }
   }
 
   clickHandlerMax(event) {
     const dataMax = changeMaxListener(event);
+    const styles = addStylesToDispatch();
+    const dataToDispatch = { ...dataMax, ...styles };
     if (dataMax) {
-      this.dispatch(actions.runnersMovement(dataMax)); // Передача в state значений после события изменения максимального значения
+      this.dispatch(actions.runnersMovement(dataToDispatch)); // Передача в state значений после события изменения максимального значения
     }
   }
 
   clickHandlerStep(event) {
     const dataStep = changeStepListener(event)
+    const styles = addStylesToDispatch();
+    const dataToDispatch = { ...dataStep, ...styles };
     if (dataStep) {
-      this.dispatch(actions.runnersMovement(dataStep)); // Передача в state значений переключателей из панели
+      this.dispatch(actions.runnersMovement(dataToDispatch)); // Передача в state значений переключателей из панели
     }    
   }
 }

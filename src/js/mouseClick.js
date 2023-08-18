@@ -53,23 +53,6 @@ export function clickMouse(event) {
             valueCheckItem1: config.dataset.btn1_tip,
             checkItem2: "buttonFirstTip",
             valueCheckItem2: config.dataset.btn1_tip,
-
-            checkItem4: 'intervalStyleHeight',
-            valueCheckItem4: interval.style.height,            
-            checkItem5: 'intervalStyleWidth',
-            valueCheckItem5: interval.style.width,
-            checkItem6: 'intervalStyleMarginTop',
-            valueCheckItem6: interval.style.marginTop,
-            checkItem7: 'intervalStyleMarginLeft',
-            valueCheckItem7: interval.style.marginLeft,
-            checkItem8: 'buttonFirstStyleMarginTop',
-            valueCheckItem8: buttonFirst.style.marginTop,
-            checkItem9: 'buttonFirstStyleMarginLeft',
-            valueCheckItem9: buttonFirst.style.marginLeft,
-            // checkItem10: 'buttonSecondStyleMarginTop',
-            // valueCheckItem10: buttonSecond.style.marginTop,
-            // checkItem11: 'buttonSecondStyleMarginLeft',
-            // valueCheckItem11: buttonSecond.style.marginLeft
           });
           /* Значение над бегуном */
           buttonFirst.dataset.tip = config.dataset.btn1_tip;
@@ -93,23 +76,6 @@ export function clickMouse(event) {
               valueCheckItem1: config.dataset.btn1_tip,
               checkItem2: "btn1_coord",
               valueCheckItem2: config.dataset.btn1_coord,
-
-              checkItem4: 'intervalStyleHeight',
-              valueCheckItem4: interval.style.height,            
-              checkItem5: 'intervalStyleWidth',
-              valueCheckItem5: interval.style.width,
-              checkItem6: 'intervalStyleMarginTop',
-              valueCheckItem6: interval.style.marginTop,
-              checkItem7: 'intervalStyleMarginLeft',
-              valueCheckItem7: interval.style.marginLeft,
-              checkItem8: 'buttonFirstStyleMarginTop',
-              valueCheckItem8: buttonFirst.style.marginTop,
-              checkItem9: 'buttonFirstStyleMarginLeft',
-              valueCheckItem9: buttonFirst.style.marginLeft,
-              checkItem10: 'buttonSecondStyleMarginTop',
-              valueCheckItem10: buttonSecond.style.marginTop,
-              checkItem11: 'buttonSecondStyleMarginLeft',
-              valueCheckItem11: buttonSecond.style.marginLeft
             });
             /* Значение над бегуном */
             buttonFirst.dataset.tip = config.dataset.btn1_tip;
@@ -128,23 +94,6 @@ export function clickMouse(event) {
               valueCheckItem1: config.dataset.btn2_tip,
               checkItem2: "btn2_coord",
               valueCheckItem2: config.dataset.btn2_coord,
-
-              checkItem4: 'intervalStyleHeight',
-              valueCheckItem4: interval.style.height,            
-              checkItem5: 'intervalStyleWidth',
-              valueCheckItem5: interval.style.width,
-              checkItem6: 'intervalStyleMarginTop',
-              valueCheckItem6: interval.style.marginTop,
-              checkItem7: 'intervalStyleMarginLeft',
-              valueCheckItem7: interval.style.marginLeft,
-              checkItem8: 'buttonFirstStyleMarginTop',
-              valueCheckItem8: buttonFirst.style.marginTop,
-              checkItem9: 'buttonFirstStyleMarginLeft',
-              valueCheckItem9: buttonFirst.style.marginLeft,
-              checkItem10: 'buttonSecondStyleMarginTop',
-              valueCheckItem10: buttonSecond.style.marginTop,
-              checkItem11: 'buttonSecondStyleMarginLeft',
-              valueCheckItem11: buttonSecond.style.marginLeft
             });
             /* Значение над бегуном */
             buttonSecond.dataset.tip = config.dataset.btn2_tip;
@@ -181,23 +130,6 @@ export function clickMouse(event) {
           resolve({
             checkItem1: "btn1_tip",
             valueCheckItem1: config.dataset.btn1_tip,
-
-            checkItem4: 'intervalStyleHeight',
-            valueCheckItem4: interval.style.height,            
-            checkItem5: 'intervalStyleWidth',
-            valueCheckItem5: interval.style.width,
-            checkItem6: 'intervalStyleMarginTop',
-            valueCheckItem6: interval.style.marginTop,
-            checkItem7: 'intervalStyleMarginLeft',
-            valueCheckItem7: interval.style.marginLeft,
-            checkItem8: 'buttonFirstStyleMarginTop',
-            valueCheckItem8: buttonFirst.style.marginTop,
-            checkItem9: 'buttonFirstStyleMarginLeft',
-            valueCheckItem9: buttonFirst.style.marginLeft,
-            // checkItem10: 'buttonSecondStyleMarginTop',
-            // valueCheckItem10: buttonSecond.style.marginTop,
-            // checkItem11: 'buttonSecondStyleMarginLeft',
-            // valueCheckItem11: buttonSecond.style.marginLeft
           });
           /* Значение над бегуном */
           buttonFirst.dataset.tip = config.dataset.btn1_tip;
@@ -225,23 +157,6 @@ export function clickMouse(event) {
               valueCheckItem1: config.dataset.btn1_tip,
               checkItem2: "btn1_coord",
               valueCheckItem2: config.dataset.btn1_coord,
-
-              checkItem4: 'intervalStyleHeight',
-              valueCheckItem4: interval.style.height,            
-              checkItem5: 'intervalStyleWidth',
-              valueCheckItem5: interval.style.width,
-              checkItem6: 'intervalStyleMarginTop',
-              valueCheckItem6: interval.style.marginTop,
-              checkItem7: 'intervalStyleMarginLeft',
-              valueCheckItem7: interval.style.marginLeft,
-              checkItem8: 'buttonFirstStyleMarginTop',
-              valueCheckItem8: buttonFirst.style.marginTop,
-              checkItem9: 'buttonFirstStyleMarginLeft',
-              valueCheckItem9: buttonFirst.style.marginLeft,
-              checkItem10: 'buttonSecondStyleMarginTop',
-              valueCheckItem10: buttonSecond.style.marginTop,
-              checkItem11: 'buttonSecondStyleMarginLeft',
-              valueCheckItem11: buttonSecond.style.marginLeft
             });
             /* Значение над бегуном */
             buttonFirst.dataset.tip = config.dataset.btn1_tip;
@@ -251,7 +166,6 @@ export function clickMouse(event) {
             top2 = top;
             config.dataset.btn2_coord = String(division.offsetHeight - top);
             buttonSecond.style.marginTop = top2 + "px";
-            console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!11')
             numberForTip = division.offsetHeight - top;
             /* Передача значения в конфиг */
             config.dataset.btn2_tip = forTip(target, numberForTip);
@@ -266,23 +180,6 @@ export function clickMouse(event) {
               valueCheckItem1: config.dataset.btn2_tip,
               checkItem2: "btn2_coord",
               valueCheckItem2: config.dataset.btn2_coord,
-
-              checkItem4: 'intervalStyleHeight',
-              valueCheckItem4: interval.style.height,            
-              checkItem5: 'intervalStyleWidth',
-              valueCheckItem5: interval.style.width,
-              checkItem6: 'intervalStyleMarginTop',
-              valueCheckItem6: interval.style.marginTop,
-              checkItem7: 'intervalStyleMarginLeft',
-              valueCheckItem7: interval.style.marginLeft,
-              checkItem8: 'buttonFirstStyleMarginTop',
-              valueCheckItem8: buttonFirst.style.marginTop,
-              checkItem9: 'buttonFirstStyleMarginLeft',
-              valueCheckItem9: buttonFirst.style.marginLeft,
-              checkItem10: 'buttonSecondStyleMarginTop',
-              valueCheckItem10: buttonSecond.style.marginTop,
-              checkItem11: 'buttonSecondStyleMarginLeft',
-              valueCheckItem11: buttonSecond.style.marginLeft
             });
             
             /* Значение над бегуном */

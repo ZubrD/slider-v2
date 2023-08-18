@@ -15,8 +15,6 @@ export async function allChecksListener(event) {
     const ranger = elem.parentNode.parentNode.querySelector("[data-type='ranger']");
     const config = elem.parentNode.parentNode.querySelector("[data-type='config']");
     const interval = ranger.querySelector("[data-type='interval']")
-    const buttonFirst = ranger.querySelector("[data-type='btn-first']")
-    const buttonSecond = ranger.querySelector("[data-type='btn-second']")
 
     /* Извлечение из конфига флага ориентации */
     let orientation = config.dataset.orientation;
@@ -28,26 +26,9 @@ export async function allChecksListener(event) {
         /* Скрываю надписи */
         hideTip(elem);
         resetBtnCoord(event);
-        console.log('second', buttonSecond)
         return {   // Передача флага дискретного хода бегунов в Panel для store                 
             checkItem1: 'runners',
             valueCheckItem1: config.dataset.runners,
-            checkItem4: 'intervalStyleHeight',
-            valueCheckItem4: interval.style.height,            
-            checkItem5: 'intervalStyleWidth',
-            valueCheckItem5: interval.style.width,
-            checkItem6: 'intervalStyleMarginTop',
-            valueCheckItem6: interval.style.marginTop,
-            checkItem7: 'intervalStyleMarginLeft',
-            valueCheckItem7: interval.style.marginLeft,
-            checkItem8: 'buttonFirstStyleMarginTop',
-            valueCheckItem8: buttonFirst.style.marginTop,
-            checkItem9: 'buttonFirstStyleMarginLeft',
-            valueCheckItem9: buttonFirst.style.marginLeft,
-            checkItem10: 'buttonSecondStyleMarginTop',
-            valueCheckItem10: buttonSecond.style.marginTop,
-            checkItem11: 'buttonSecondStyleMarginLeft',
-            valueCheckItem11: buttonSecond.style.marginLeft
           }
     }
     else if (run && (!elem.checked)) {
@@ -59,22 +40,6 @@ export async function allChecksListener(event) {
         return {                   
             checkItem1: 'runners',
             valueCheckItem1: config.dataset.runners,
-            checkItem4: 'intervalStyleHeight',
-            valueCheckItem4: interval.style.height,            
-            checkItem5: 'intervalStyleWidth',
-            valueCheckItem5: interval.style.width,
-            checkItem6: 'intervalStyleMarginTop',
-            valueCheckItem6: interval.style.marginTop,
-            checkItem7: 'intervalStyleMarginLeft',
-            valueCheckItem7: interval.style.marginLeft,
-            checkItem8: 'buttonFirstStyleMarginTop',
-            valueCheckItem8: buttonFirst.style.marginTop,
-            checkItem9: 'buttonFirstStyleMarginLeft',
-            valueCheckItem9: buttonFirst.style.marginLeft,
-            checkItem10: 'buttonSecondStyleMarginTop',
-            valueCheckItem10: buttonSecondBis.style.marginTop,
-            checkItem11: 'buttonSecondStyleMarginLeft',
-            valueCheckItem11: buttonSecondBis.style.marginLeft
           }
     }
     /* Дискретный / плавный ход */
@@ -125,23 +90,6 @@ export async function allChecksListener(event) {
             valueCheckItem2: config.dataset.btn1_coord,
             checkItem3: 'btn2_coord',
             valueCheckItem3: config.dataset.btn2_coord,
-            
-            checkItem4: 'intervalStyleHeight',
-            valueCheckItem4: interval.style.height,            
-            checkItem5: 'intervalStyleWidth',
-            valueCheckItem5: interval.style.width,
-            checkItem6: 'intervalStyleMarginTop',
-            valueCheckItem6: interval.style.marginTop,
-            checkItem7: 'intervalStyleMarginLeft',
-            valueCheckItem7: interval.style.marginLeft,
-            checkItem8: 'buttonFirstStyleMarginTop',
-            valueCheckItem8: buttonFirst.style.marginTop,
-            checkItem9: 'buttonFirstStyleMarginLeft',
-            valueCheckItem9: buttonFirst.style.marginLeft,
-            checkItem10: 'buttonSecondStyleMarginTop',
-            valueCheckItem10: buttonSecond === true ? buttonSecond.style.marginTop : "",
-            checkItem11: 'buttonSecondStyleMarginLeft',
-            valueCheckItem11: buttonSecond === true ? buttonSecond.style.marginLeft : ""
           }
     }
     else if (orient && (elem.checked === false)) {
@@ -158,23 +106,6 @@ export async function allChecksListener(event) {
             valueCheckItem2: config.dataset.btn1_coord,
             checkItem3: 'btn2_coord',
             valueCheckItem3: config.dataset.btn2_coord,
-
-            checkItem4: 'intervalStyleHeight',
-            valueCheckItem4: interval.style.height,            
-            checkItem5: 'intervalStyleWidth',
-            valueCheckItem5: interval.style.width,
-            checkItem6: 'intervalStyleMarginTop',
-            valueCheckItem6: interval.style.marginTop,
-            checkItem7: 'intervalStyleMarginLeft',
-            valueCheckItem7: interval.style.marginLeft,
-            checkItem8: 'buttonFirstStyleMarginTop',
-            valueCheckItem8: buttonFirst.style.marginTop,
-            checkItem9: 'buttonFirstStyleMarginLeft',
-            valueCheckItem9: buttonFirst.style.marginLeft,
-            checkItem10: 'buttonSecondStyleMarginTop',
-            valueCheckItem10: buttonSecond === true ? buttonSecond.style.marginTop: "",
-            checkItem11: 'buttonSecondStyleMarginLeft',
-            valueCheckItem11: buttonSecond === true ? buttonSecond.style.marginLeft: ""
           }
     }
 }

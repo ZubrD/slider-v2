@@ -1,5 +1,6 @@
 import { SliderComponent } from "../../core/SliderComponent";
 import { mouseDownBtnFirst, mouseDownBtnSecond } from "../../js/mouse";
+import { addStylesToDispatch } from "../../js/addStylesToDispatch";
 import {
   mouseVertDownBtnFirst,
   mouseVertDownBtnSecond,
@@ -38,23 +39,29 @@ export class Button extends SliderComponent {
     if (orientation === "horizontal") {
       if (type === "btn-first") {
         const data = await mouseDownBtnFirst(event);
-        console.log(data)
-        this.dispatch(actions.runnersMovement(data))
+        const styles = addStylesToDispatch();
+        const dataToDispatch = { ...data, ...styles };
+        this.dispatch(actions.runnersMovement(dataToDispatch))
       }
       if (type === "btn-second") {
         const data = await mouseDownBtnSecond(event);
-        this.dispatch(actions.runnersMovement(data))
+        const styles = addStylesToDispatch();
+        const dataToDispatch = { ...data, ...styles };
+        this.dispatch(actions.runnersMovement(dataToDispatch))
       }
     }
     if (orientation === "vertical") {
       if (type === "btn-first") {
         const data = await mouseVertDownBtnFirst(event);
-        console.log(data)
-        this.dispatch(actions.runnersMovement(data))
+        const styles = addStylesToDispatch();
+        const dataToDispatch = { ...data, ...styles };
+        this.dispatch(actions.runnersMovement(dataToDispatch))
       }
       if (type === "btn-second") {
         const data = await mouseVertDownBtnSecond(event);
-        this.dispatch(actions.runnersMovement(data))
+        const styles = addStylesToDispatch();
+        const dataToDispatch = { ...data, ...styles };
+        this.dispatch(actions.runnersMovement(dataToDispatch))
       }
     }
   }
