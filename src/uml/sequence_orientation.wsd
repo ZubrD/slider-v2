@@ -1,0 +1,43 @@
+@startuml
+actor Пользователь
+boundary Панель
+boundary Слайдер
+control Settings
+
+Пользователь -> Панель : Поставить \ снять "галочку"\nв чекбоксе "Вертикальный"
+note left
+Вертикальный или
+горизонтальный
+стиль отображения
+end note 
+Панель -> Settings : orientation = "vertical" ("horizontal")
+Settings -> Слайдер : orientation
+Слайдер -> Слайдер : добавить (удалить) стили
+note left
+Добавить (или удалить) стили
+оболочке слайдера, слайдеру,
+прогресс-бару, бегункам, шкале,
+подписям шкалы, разделителям шкалы 
+end note 
+Слайдер -> Settings : width = ranger.offsetWidth
+note left
+Ширина слайдера
+end note
+Слайдер -> Settings : height = ranger.offsetHeight
+note left
+Высота слайдера
+end note
+Слайдер -> Settings : btn1_coord = 0
+Слайдер -> Settings : btn2_coord = height
+note left
+Для вертикальной ориентации
+end note
+Слайдер -> Settings : btn2_coord = width
+note left
+Для горизонтальной ориентации
+end note
+Слайдер -> Settings : btn2_init_pos = width
+note left
+--//--
+end note
+@enduml

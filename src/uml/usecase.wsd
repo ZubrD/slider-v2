@@ -1,0 +1,42 @@
+@startuml UseCaseDiagram
+left to right direction
+title Варианты использования
+skinparam PackageStyle rect
+skinparam actorStyle Hollow
+
+actor :Бегунки: as Runners
+actor :Дискретность (Откл.): as DiscreteOn
+actor :Дискретность (Вкл.): as DiscreteOff
+actor :Бегуны (Откл.): as RunnersOff
+actor :Бегуны (Вкл.): as RunnersOn
+actor :Ярлык (Откл.): as TipOff
+actor :Ярлык (Вкл.): as TipOn
+actor :Ориентация (Откл.): as OrientationOff
+actor :Ориентация (Вкл.): as OrientationOn
+actor :Минимум: as Minimum
+actor :Максимум: as Maximum
+actor :Шаг: as Step
+
+rectangle Варианты {
+    Runners -- (Два бегуна)
+    Runners -- (Один бегун)
+    Runners -- (Плавный ход)
+    Runners -- (Дискретный ход)
+    Runners -- (Без подписи значений)
+    Runners -- (С подписью значений)
+    Runners -- (Горизонтальная ориентация)
+    Runners -- (Вертикальная ориентация)
+    (Два бегуна) -- RunnersOff
+    (Один бегун) -- RunnersOn
+    (Плавный ход) -- DiscreteOn
+    (Дискретный ход) -- DiscreteOff
+    (Без подписи значений) -- TipOff
+    (С подписью значений) -- TipOn
+    (Горизонтальная ориентация) -- OrientationOff
+    (Вертикальная ориентация) -- OrientationOn
+    (Изменение минимального значения) -- Minimum
+    (Изменение максимального значения) -- Maximum
+    (Изменение шага) -- Step
+}
+
+@enduml

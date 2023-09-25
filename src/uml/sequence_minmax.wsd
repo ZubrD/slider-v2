@@ -1,0 +1,35 @@
+@startuml
+actor Пользователь
+boundary Панель
+boundary Слайдер
+control Settings
+
+Пользователь -> Панель : Изменить минимальное\n(максимальное) значение
+note left
+Изменение минимального
+(максимального) значения
+end note 
+Панель -> Слайдер : min (max)
+Панель -> Settings : min (max)
+Слайдер -> Слайдер : makeScale(min, max, step=1)
+note left
+Расчёт параметров шкалы
+end note
+Слайдер -> Панель : сброс флага "Ярлык"
+Слайдер -> Слайдер : hideTip()
+note left
+Скрыть надписи на бегунками
+end note
+Слайдер -> Слайдер : modifyScaleInput()
+note left
+Изменение массива разрешённых шагов шкалы
+end note
+Settings -> Слайдер : inst
+note left
+Номер экземпляра слайдера на странице
+end note
+Слайдер -> Слайдер : reScale()
+note left
+Перестроение шкалы по новому значению min (max)
+end note
+@enduml
