@@ -48,8 +48,10 @@ export let configObj = {
 
 
 ## Создано с помощью
-
 Плагин разработан в IDE Visual Studio Code
+
+## Язык разработки
+JavaScript
 
 ## Диаграмма классов
 
